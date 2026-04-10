@@ -70,8 +70,7 @@
              margin-left: 300px;
              background: #fff;
              border-radius: 6px;
-             padding: 50px 60px;
-             padding-bottom: 70px;
+             padding: 40px 40px;
              box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
              min-height: calc(100vh - 120px);
              max-height: calc(100vh - 120px);
@@ -198,6 +197,12 @@
         .back-link {
             display: inline-block;
             margin-bottom: 25px;
+            position: fixed;
+            top: 60px;
+            left: 330px;
+            z-index: 10;
+            color: #49bf9d;
+            font-size: 0.95em;
         }
 
         article h1 {
@@ -472,7 +477,7 @@
                      <ul class="blog-list">
              `;
 
-             blogConfig.posts.forEach(post => {
+             [...blogConfig.posts].sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(post => {
                  html += `
                      <li class="blog-item">
                          <a href="#" onclick="loadPost('${post.id}'); return false;">
