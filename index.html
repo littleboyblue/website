@@ -46,13 +46,14 @@
             z-index: -1;
         }
 
-        #wrapper {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 30px;
-            min-height: 100vh;
-        }
+         #wrapper {
+             width: 100%;
+             max-width: 1400px;
+             margin: 0 auto;
+             padding: 60px 30px;
+             padding-bottom: 80px;
+             min-height: 100vh;
+         }
 
         #header {
             position: fixed;
@@ -65,13 +66,17 @@
             justify-content: center;
         }
 
-        #main {
-            margin-left: 300px;
-            background: #fff;
-            border-radius: 6px;
-            padding: 50px 60px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
+         #main {
+             margin-left: 300px;
+             background: #fff;
+             border-radius: 6px;
+             padding: 50px 60px;
+             padding-bottom: 70px;
+             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+             min-height: calc(100vh - 120px);
+             max-height: calc(100vh - 120px);
+             overflow-y: auto;
+         }
 
         .avatar {
             margin-bottom: 20px;
@@ -303,15 +308,17 @@
             font-weight: 400;
         }
 
-         #footer {
-             margin-left: 300px;
-             color: rgba(255, 255, 255, 0.6);
-             font-size: 0.9em;
-             padding-top: 25px;
-             margin-top: 25px;
-             border-top: 1px solid rgba(255, 255, 255, 0.2);
-             text-align: left;
-         }
+          #footer {
+              position: fixed;
+              bottom: 20px;
+              left: 30px;
+              color: rgba(255, 255, 255, 0.6);
+              font-size: 0.9em;
+              padding-top: 0;
+              margin-top: 0;
+              border-top: none;
+              text-align: left;
+          }
 
         #footer a {
             color: #fff;
@@ -346,37 +353,50 @@
                 display: inline-block;
             }
 
-            #main {
-                margin-left: 0;
-                padding: 30px 25px;
-            }
+             #main {
+                 margin-left: 0;
+                 padding: 30px 25px;
+                 max-height: calc(100vh - 320px);
+                 overflow-y: auto;
+             }
 
-            .markdown-content {
-                font-size: 1.1em;
-            }
+             .markdown-content {
+                 font-size: 1.1em;
+             }
 
-            article h1 {
-                font-size: 2em;
-            }
+             article h1 {
+                 font-size: 2em;
+             }
 
-            #footer {
-                margin-left: 0;
-            }
-        }
+             #footer {
+                 position: static;
+                 bottom: auto;
+                 left: auto;
+                 transform: none;
+                 width: auto;
+                 max-width: none;
+                 margin-left: 0;
+                 padding-top: 25px;
+                 margin-top: 25px;
+                 border-top: 1px solid rgba(255, 255, 255, 0.2);
+             }
+         }
 
-        @media screen and (max-width: 480px) {
-            #wrapper {
-                padding: 10px;
-            }
+         @media screen and (max-width: 480px) {
+             #wrapper {
+                 padding: 10px;
+             }
 
-            #header {
-                padding: 30px 15px;
-            }
+             #header {
+                 padding: 30px 15px;
+             }
 
-            #main {
-                padding: 20px 15px;
-            }
-        }
+             #main {
+                 padding: 20px 15px;
+                 max-height: calc(100vh - 240px);
+                 overflow-y: auto;
+             }
+         }
     </style>
 </head>
 <body>
@@ -443,35 +463,37 @@
         const app = document.getElementById('app');
 
         // Render home page (blog list)
-        function renderHome() {
-            let html = `
-                <section>
-                    <header class="major">
-                        <h2>近期文章</h2>
-                    </header>
-                    <ul class="blog-list">
-            `;
+         function renderHome() {
+             let html = `
+                 <section>
+                     <header class="major">
+                         <h2>近期文章</h2>
+                     </header>
+                     <ul class="blog-list">
+             `;
 
-            blogConfig.posts.forEach(post => {
-                html += `
-                    <li class="blog-item">
-                        <a href="#" onclick="loadPost('${post.id}'); return false;">
-                            <h3>${post.title}</h3>
-                            <div class="blog-meta">${post.date}</div>
-                            <p class="blog-excerpt">${post.excerpt}</p>
-                        </a>
-                    </li>
-                `;
-            });
+             blogConfig.posts.forEach(post => {
+                 html += `
+                     <li class="blog-item">
+                         <a href="#" onclick="loadPost('${post.id}'); return false;">
+                             <h3>${post.title}</h3>
+                             <div class="blog-meta">${post.date}</div>
+                             <p class="blog-excerpt">${post.excerpt}</p>
+                         </a>
+                     </li>
+                 `;
+             });
 
-            html += `
-                    </ul>
-                </section>
-            `;
+             html += `
+                     </ul>
+                 </section>
+             `;
 
-            app.innerHTML = html;
-            document.getElementById('year').textContent = new Date().getFullYear();
-        }
+             app.innerHTML = html;
+             document.getElementById('year').textContent = new Date().getFullYear();
+             // Clear hash when returning home
+             location.hash = '';
+         }
 
         // Load and render a post
         async function loadPost(postId) {
@@ -505,8 +527,8 @@
                     hljs.highlightElement(block);
                 });
 
-                // Update URL hash
-                location.hash = '#/' + postId;
+                 // Update URL hash
+                 location.hash = '#p/' + postId;
             } catch (error) {
                 console.error('Error loading post:', error);
                 app.innerHTML = `
@@ -517,18 +539,18 @@
             }
         }
 
-        // Handle routing
-        function handleRoute() {
-            const hash = location.hash;
-            if (hash.startsWith('#/')) {
-                const postId = hash.slice(2);
-                if (postId) {
-                    loadPost(postId);
-                    return;
-                }
-            }
-            renderHome();
-        }
+         // Handle routing
+         function handleRoute() {
+             const hash = location.hash;
+             if (hash.startsWith('#p/')) {
+                 const postId = hash.slice(3);
+                 if (postId) {
+                     loadPost(postId);
+                     return;
+                 }
+             }
+             renderHome();
+         }
 
         // Initial render
         handleRoute();
