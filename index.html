@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具集合 - 个人工具箱</title>
+    <title>Blog - Personal Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
         * {
             margin: 0;
@@ -14,200 +15,423 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2c3e50;
+            --secondary-text: #666666;
+            --border-color: #eaecef;
+            --hover-bg: #f6f8fa;
+            --accent-color: #3498db;
+            --code-bg: #f6f8fa;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', 'Noto Serif SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
         }
 
         .container {
             max-width: 900px;
-            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
 
         header {
-            text-align: center;
-            color: white;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        h1 {
-            font-size: 3rem;
+        .site-title {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            font-size: 1.125rem;
-            font-weight: 300;
-            opacity: 0.95;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .tool-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 30px;
+            color: var(--text-color);
+            margin-bottom: 8px;
             text-decoration: none;
-            color: #333;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            display: inline-block;
         }
 
-        .tool-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        .site-description {
+            font-size: 1.1rem;
+            color: var(--secondary-text);
+            font-weight: 300;
         }
 
-        .tool-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            font-size: 40px;
+        nav {
+            margin-top: 20px;
         }
 
-        .speedtest-icon {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        nav a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            margin-right: 24px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        .devtools-icon {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        nav a:hover {
+            color: var(--accent-color);
         }
 
-        .tool-card h2 {
+        .blog-list {
+            list-style: none;
+        }
+
+        .blog-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+
+        .blog-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .blog-item:hover {
+            background-color: var(--hover-bg);
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 8px;
+        }
+
+        .blog-title {
             font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 12px;
-            color: #1a1a1a;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            transition: color 0.2s;
         }
 
-        .tool-card p {
-            font-size: 0.95rem;
-            color: #666;
+        .blog-item:hover .blog-title {
+            color: var(--accent-color);
+        }
+
+        .blog-meta {
+            font-size: 0.875rem;
+            color: var(--secondary-text);
+            margin-bottom: 12px;
+        }
+
+        .blog-excerpt {
+            color: var(--secondary-text);
+            font-size: 1rem;
             line-height: 1.6;
         }
 
-        .arrow {
-            margin-top: 24px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+        /* Markdown content styles */
+        .markdown-content {
+            font-family: 'Noto Serif SC', serif;
         }
 
-        .tool-card:hover .arrow {
-            background: #667eea;
-            transform: translateX(5px);
+        .markdown-content h1 {
+            font-size: 2.2rem;
+            margin: 40px 0 20px;
+            font-weight: 600;
         }
 
-        .tool-card:hover .arrow svg {
-            stroke: white;
+        .markdown-content h2 {
+            font-size: 1.8rem;
+            margin: 35px 0 18px;
+            font-weight: 600;
         }
 
-        .arrow svg {
-            width: 20px;
-            height: 20px;
-            stroke: #666;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
+        .markdown-content h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .markdown-content p {
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin-bottom: 18px;
+            padding-left: 30px;
+        }
+
+        .markdown-content li {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .markdown-content code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9em;
+        }
+
+        .markdown-content pre {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .markdown-content pre code {
+            background: none;
+            color: #d4d4d4;
+            padding: 0;
+        }
+
+        .markdown-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 16px;
+            color: var(--secondary-text);
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .markdown-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .markdown-content a:hover {
+            border-bottom-color: var(--accent-color);
+        }
+
+        .markdown-content table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .markdown-content th {
+            background-color: var(--hover-bg);
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        article header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        article .post-meta {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--secondary-text);
             font-size: 0.875rem;
-            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
-            h1 {
+            .container {
+                padding: 30px 16px;
+            }
+
+            .site-title {
                 font-size: 2rem;
             }
 
-            .subtitle {
-                font-size: 1rem;
+            article header h1 {
+                font-size: 1.8rem;
             }
 
-            .tools-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .markdown-content h1 {
+                font-size: 1.8rem;
             }
 
-            .tool-card {
-                padding: 30px 20px;
+            .markdown-content h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>我的工具箱</h1>
-            <p class="subtitle">实用在线工具，随用随取</p>
-        </header>
-
-        <div class="tools-grid">
-            <a href="/speedtest/" class="tool-card">
-                <div class="tool-icon speedtest-icon">
-                    📊
-                </div>
-                <h2>网速测试</h2>
-                <p>测试你的下载速度、上传速度和网络延迟，结果保存本地历史记录</p>
-                <div class="arrow">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
-            </a>
-
-            <a href="/dev-tools/" class="tool-card">
-                <div class="tool-icon devtools-icon">
-                    🛠️
-                </div>
-                <h2>开发小工具</h2>
-                <p>时间戳转换、色值转换、JSON格式化、Base64编码、UUID生成</p>
-                <div class="arrow">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </div>
-            </a>
-        </div>
-
-        <footer>
-            <p>🕒 由 washi.lol 提供 © <span id="year"></span></p>
-        </footer>
+    <div class="container" id="app">
+        <!-- Index page will be rendered here -->
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Configure marked
+        marked.setOptions({
+            highlight: (code, lang) => {
+                if (lang && hljs.getLanguage(lang)) {
+                    return hljs.highlight(code, { language: lang }).value;
+                }
+                return hljs.highlightAuto(code).value;
+            },
+            breaks: true,
+            gfm: true
+        });
+
+        // Blog configuration
+        const blogConfig = {
+            title: 'My Blog',
+            description: 'Thinking, learning, and sharing',
+            posts: [
+                {
+                    id: 'welcome',
+                    title: 'Welcome to My Blog',
+                    date: 'April 10, 2026',
+                    excerpt: 'This is my personal blog where I share thoughts, ideas and experiences. You can easily add new posts by editing Markdown files locally.',
+                    file: 'posts/welcome.md'
+                }
+            ]
+        };
+
+        // App state
+        let currentPost = null;
+
+        // Elements
+        const app = document.getElementById('app');
+
+        // Render home page (blog list)
+        function renderHome() {
+            let html = `
+                <header>
+                    <h1 class="site-title">${blogConfig.title}</h1>
+                    <p class="site-description">${blogConfig.description}</p>
+                </header>
+                <main>
+                    <ul class="blog-list">
+            `;
+
+            blogConfig.posts.forEach(post => {
+                html += `
+                    <li class="blog-item">
+                        <a href="#" onclick="loadPost('${post.id}'); return false;">
+                            <h2 class="blog-title">${post.title}</h2>
+                            <div class="blog-meta">${post.date}</div>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                        </a>
+                    </li>
+                `;
+            });
+
+            html += `
+                    </ul>
+                </main>
+                <footer>
+                    <p>© <span id="year"></span> My Blog • Built with plain HTML/JS and Markdown</p>
+                </footer>
+            `;
+
+            app.innerHTML = html;
+            document.getElementById('year').textContent = new Date().getFullYear();
+        }
+
+        // Load and render a post
+        async function loadPost(postId) {
+            const post = blogConfig.posts.find(p => p.id === postId);
+            if (!post) return;
+
+            currentPost = post;
+
+            try {
+                const response = await fetch(post.file);
+                if (!response.ok) {
+                    throw new Error('Post not found');
+                }
+                const markdown = await response.text();
+                const content = marked.parse(markdown);
+
+                const html = `
+                    <a href="#" onclick="renderHome(); return false;" class="back-link">← Back to blog</a>
+                    <article>
+                        <header>
+                            <h1>${post.title}</h1>
+                            <div class="post-meta">${post.date}</div>
+                        </header>
+                        <div class="markdown-content">${content}</div>
+                    </article>
+                    <footer>
+                        <p>© <span id="year"></span> My Blog • Built with plain HTML/JS and Markdown</p>
+                    </footer>
+                `;
+
+                app.innerHTML = html;
+                document.getElementById('year').textContent = new Date().getFullYear();
+
+                // Highlight code blocks
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+
+                // Update URL hash
+                location.hash = '#/' + postId;
+            } catch (error) {
+                console.error('Error loading post:', error);
+                app.innerHTML = `
+                    <a href="#" onclick="renderHome(); return false;" class="back-link">← Back to blog</a>
+                    <h1>Error</h1>
+                    <p>Failed to load post. Please check if the Markdown file exists.</p>
+                `;
+            }
+        }
+
+        // Handle routing
+        function handleRoute() {
+            const hash = location.hash;
+            if (hash.startsWith('#/')) {
+                const postId = hash.slice(2);
+                if (postId) {
+                    loadPost(postId);
+                    return;
+                }
+            }
+            renderHome();
+        }
+
+        // Initial render
+        handleRoute();
+
+        // Listen to hash changes
+        window.addEventListener('hashchange', handleRoute);
     </script>
 </body>
 </html>
