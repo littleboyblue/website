@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Personal Blog</title>
+    <title>思考空间 - 技术博客</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,48 +16,94 @@
         }
 
         :root {
-            --bg-color: #ffffff;
-            --text-color: #2c3e50;
-            --secondary-text: #666666;
-            --border-color: #eaecef;
-            --hover-bg: #f6f8fa;
-            --accent-color: #3498db;
-            --code-bg: #f6f8fa;
+            --bg-color: #fbfbfc;
+            --card-bg: #ffffff;
+            --text-color: #1a1a2e;
+            --secondary-text: #64748b;
+            --border-color: #e2e8f0;
+            --hover-bg: #f8fafc;
+            --accent-color: #0f172a;
+            --code-bg: #f1f5f9;
         }
 
         body {
             font-family: 'Inter', 'Noto Serif SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-color);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             color: var(--text-color);
             line-height: 1.7;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 60px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        header {
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
+        .site-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .site-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 8px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
             text-decoration: none;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .site-title .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #0ea5e9);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
         }
 
         .site-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--secondary-text);
             font-weight: 300;
+            line-height: 1.6;
+        }
+
+        main {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         nav {
@@ -265,22 +311,34 @@
             font-size: 0.875rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 16px;
-            }
+         @media (max-width: 768px) {
+             .container {
+                 padding: 30px 16px;
+             }
 
-            .site-title {
-                font-size: 2rem;
-            }
+             .site-header, main {
+                 padding: 24px 20px;
+             }
 
-            article header h1 {
-                font-size: 1.8rem;
-            }
+             .site-title {
+                 font-size: 2rem;
+                 gap: 10px;
+             }
 
-            .markdown-content h1 {
-                font-size: 1.8rem;
-            }
+             .site-title .icon {
+                 width: 40px;
+                 height: 40px;
+                 font-size: 22px;
+             }
+
+             .site-header h1 {
+                 font-size: 2rem;
+             }
+
+             .markdown-content h1 {
+                 font-size: 1.8rem;
+             }
+
 
             .markdown-content h2 {
                 font-size: 1.5rem;
@@ -311,22 +369,15 @@
 
         // Blog configuration
         const blogConfig = {
-            title: 'My Blog',
-            description: 'Thinking, learning, and sharing',
+            title: '思考空间',
+            description: '探索 AI 与技术的深度思考，记录学习与成长',
             posts: [
                 {
                     id: 'agent-mcp-skill-intro',
                     title: 'Agent、MCP 和 Skill：AI 智能体的模块化科普',
                     date: '2026年4月10日',
-                    excerpt: '用通俗易懂的方式解释 AI 智能体领域的三个核心概念：Agent、MCP 和 Skill，以及它们之间的关系。',
+                    excerpt: '用通俗易懂的方式解释 AI 智能体领域的三个核心概念：Agent、MCP 和 Skill，以及它们之间的关系，为什么模块化是未来方向。',
                     file: 'posts/agent-mcp-skill-intro.md'
-                },
-                {
-                    id: 'welcome',
-                    title: 'Welcome to My Blog',
-                    date: '2026年4月10日',
-                    excerpt: 'This is my personal blog where I share thoughts, ideas and experiences. You can easily add new posts by editing Markdown files locally.',
-                    file: 'posts/welcome.md'
                 }
             ]
         };
@@ -340,10 +391,13 @@
         // Render home page (blog list)
         function renderHome() {
             let html = `
-                <header>
-                    <h1 class="site-title">${blogConfig.title}</h1>
+                <div class="site-header">
+                    <h1 class="site-title">
+                        <span class="icon">💭</span>
+                        ${blogConfig.title}
+                    </h1>
                     <p class="site-description">${blogConfig.description}</p>
-                </header>
+                </div>
                 <main>
                     <ul class="blog-list">
             `;
@@ -364,7 +418,7 @@
                     </ul>
                 </main>
                 <footer>
-                    <p>© <span id="year"></span> My Blog • Built with plain HTML/JS and Markdown</p>
+                    <p>© <span id="year"></span> 思考空间 • 静水流深</p>
                 </footer>
             `;
 
@@ -388,16 +442,16 @@
                 const content = marked.parse(markdown);
 
                 const html = `
-                    <a href="#" onclick="renderHome(); return false;" class="back-link">← Back to blog</a>
-                    <article>
-                        <header>
-                            <h1>${post.title}</h1>
-                            <div class="post-meta">${post.date}</div>
-                        </header>
+                    <div class="site-header">
+                        <a href="#" onclick="renderHome(); return false;" class="back-link">← 返回博客列表</a>
+                        <h1>${post.title}</h1>
+                        <div class="post-meta">${post.date}</div>
+                    </div>
+                    <main>
                         <div class="markdown-content">${content}</div>
-                    </article>
+                    </main>
                     <footer>
-                        <p>© <span id="year"></span> My Blog • Built with plain HTML/JS and Markdown</p>
+                        <p>© <span id="year"></span> 思考空间 • 静水流深</p>
                     </footer>
                 `;
 
