@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
         * {
@@ -15,122 +15,120 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
-            background: #f4f4f4;
+            background: #f5f5f5;
             font-family: 'Source Sans Pro', sans-serif;
             font-weight: 300;
-            color: #666;
-            line-height: 1.8;
+            color: #777;
+            line-height: 1.75;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 400;
-            color: #444;
+        body:before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(20, 30, 50, 0.3), rgba(20, 30, 50, 0.3)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
 
-        a {
-            color: #000;
-            text-decoration: none;
-            border-bottom: dotted 1px rgba(0, 0, 0, 0.25);
-        }
-
-        a:hover {
-            color: #f2849e;
-            border-bottom: none;
-        }
-
-        header {
-            text-align: center;
-            background: #fff;
-            padding: 50px 2em 1em 2em;
-        }
-
-        .avatar {
-            border-radius: 100%;
-            overflow: hidden;
-            display: inline-block;
-            margin-bottom: 1.5em;
-        }
-
-        .avatar img {
-            display: block;
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
-        }
-
-        header h1 {
-            font-size: 1.5em;
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        header h1 strong {
-            color: #000;
-            font-weight: 400;
+        #wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
         }
 
         #header {
-            padding-top: 0;
+            position: fixed;
+            width: 300px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 2em;
+        .avatar {
+            margin-bottom: 20px;
+        }
+
+        .avatar img {
+            border-radius: 100%;
+            width: 100px;
+            height: 100px;
+        }
+
+        #header h1 {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 1em;
+            font-weight: 400;
+        }
+
+        #header h1 strong {
+            color: #fff;
+            display: block;
+        }
+
+        #header p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1em;
+        }
+
+        #header a {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #header a:hover {
+            color: #49bf9d;
+            border-bottom-color: transparent;
         }
 
         #main {
             background: #fff;
-            padding: 3em 2em;
+            border-radius: 6px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         section {
-            margin-bottom: 3em;
+            margin-bottom: 40px;
         }
 
         section:last-child {
             margin-bottom: 0;
         }
 
-        .major {
-            margin-bottom: 2em;
-        }
-
         .major h2 {
             font-size: 1.8em;
-            line-height: 1.5;
-            color: #000;
+            color: #49bf9d;
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+            border-bottom: 3px solid #49bf9d;
+            display: inline-block;
+            font-weight: 400;
         }
 
         p {
             margin-bottom: 1.5em;
         }
 
-        .actions {
-            list-style: none;
-        }
-
-        .actions li {
-            display: inline-block;
-        }
-
-        .button {
-            appearance: none;
-            display: inline-block;
-            border-radius: 0.35em;
-            border: 1px solid rgba(0, 0, 0, 0.25);
-            color: #000;
+        a {
+            color: #49bf9d;
             text-decoration: none;
-            padding: 0.75em 2em;
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            border-bottom: dotted 1px rgba(73, 191, 157, 0.5);
         }
 
-        .button:hover {
-            background: #f2849e;
-            border-color: #f2849e;
-            color: #fff;
+        a:hover {
+            border-bottom: none;
         }
 
         .blog-list {
@@ -138,8 +136,8 @@
         }
 
         .blog-item {
-            padding: 2em 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 25px 0;
+            border-bottom: 1px solid #eee;
         }
 
         .blog-item:first-child {
@@ -152,46 +150,50 @@
         }
 
         .blog-item a {
+            display: block;
             border-bottom: none;
         }
 
         .blog-item h3 {
             font-size: 1.5em;
-            color: #000;
-            margin-bottom: 0.5em;
+            color: #444;
+            margin-bottom: 8px;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .blog-item:hover h3 {
+            color: #49bf9d;
         }
 
         .blog-meta {
-            color: #999;
+            color: #aaa;
             font-size: 0.9em;
-            margin-bottom: 1em;
+            margin-bottom: 12px;
         }
 
         .blog-excerpt {
             font-size: 1.1em;
+            color: #777;
         }
 
-        .blog-item:hover h3 {
-            color: #f2849e;
-        }
-
-        /* Article styles */
         .back-link {
             display: inline-block;
-            margin-bottom: 2em;
+            margin-bottom: 25px;
         }
 
         article h1 {
             font-size: 2.5em;
-            color: #000;
-            margin-bottom: 0.5em;
+            color: #444;
+            margin-bottom: 10px;
+            font-weight: 400;
         }
 
         .post-meta {
-            color: #999;
-            margin-bottom: 2.5em;
-            padding-bottom: 1em;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #aaa;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
 
         /* Markdown styles */
@@ -202,19 +204,22 @@
         .markdown-content h1 {
             font-size: 2.2em;
             margin: 1.5em 0 0.8em;
-            color: #000;
+            color: #444;
+            font-weight: 400;
         }
 
         .markdown-content h2 {
             font-size: 1.8em;
             margin: 1.4em 0 0.7em;
-            color: #000;
+            color: #444;
+            font-weight: 400;
         }
 
         .markdown-content h3 {
             font-size: 1.5em;
             margin: 1.3em 0 0.6em;
-            color: #000;
+            color: #444;
+            font-weight: 400;
         }
 
         .markdown-content p {
@@ -232,16 +237,16 @@
         }
 
         .markdown-content code {
-            background: #f4f4f4;
+            background: #f5f5f5;
             padding: 0.2em 0.4em;
-            border-radius: 0.2em;
+            border-radius: 3px;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
         }
 
         .markdown-content pre {
             background: #1e1e1e;
-            border-radius: 0.35em;
+            border-radius: 6px;
             padding: 1.2em;
             overflow-x: auto;
             margin: 1.5em 0;
@@ -254,7 +259,7 @@
         }
 
         .markdown-content blockquote {
-            border-left: 4px solid #f2849e;
+            border-left: 4px solid #49bf9d;
             padding-left: 1em;
             color: #888;
             margin: 1.5em 0;
@@ -263,12 +268,8 @@
 
         .markdown-content img {
             max-width: 100%;
-            border-radius: 0.35em;
+            border-radius: 6px;
             margin: 1.5em 0;
-        }
-
-        .markdown-content a {
-            color: #f2849e;
         }
 
         .markdown-content table {
@@ -289,83 +290,90 @@
             font-weight: 400;
         }
 
-        footer {
-            text-align: center;
-            padding: 3em 0 2em;
+        #footer {
+            grid-column: 1 / -1;
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9em;
-            color: #999;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
         }
 
-        footer ul {
-            list-style: none;
-            margin-bottom: 1.5em;
+        #footer a {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
         }
 
-        footer ul li {
-            display: inline-block;
-            padding: 0 1em;
+        #footer a:hover {
+            color: #49bf9d;
+            border-bottom: none;
         }
 
-        footer ul li a {
-            color: #666;
-        }
-
-        footer ul li a:hover {
-            color: #f2849e;
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            padding-top: 2em;
-            margin-top: 2em;
-        }
-
-        @media screen and (max-width: 736px) {
-            body {
-                background: #fff;
-            }
-
-            .container {
-                padding: 0 1em;
+        @media screen and (max-width: 960px) {
+            #wrapper {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
             }
 
             #header {
-                padding: 3em 1em 1em;
+                position: relative;
+                width: auto;
+                text-align: center;
+                background: rgba(0, 0, 0, 0.2);
+                padding: 40px 20px;
+                border-radius: 6px;
+            }
+
+            .avatar {
+                margin-bottom: 20px;
+                display: inline-block;
             }
 
             #main {
-                padding: 2em 1em;
+                padding: 30px 20px;
             }
 
             article h1 {
                 font-size: 2em;
             }
+        }
 
-            .avatar img {
-                width: 80px;
-                height: 80px;
+        @media screen and (max-width: 480px) {
+            #wrapper {
+                padding: 10px;
+                gap: 20px;
+            }
+
+            #header {
+                padding: 30px 15px;
+            }
+
+            #main {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <div class="avatar">
-            <img src="https://cdn.jsdelivr.net/gh/ident/hugo-coder-portfolio@master/images/avatar.jpg" alt="Avatar" />
-        </div>
-        <h1><strong>思考空间</strong><br>
-        探索 AI 与技术的深度思考</h1>
-    </header>
-
-    <div id="main" class="container">
-        <div id="app">
-            <!-- Content will be rendered here -->
-        </div>
-
-        <footer>
-            <div class="copyright">
-                <p>&copy; <span id="year"></span> 思考空间 • <a href="https://washi.lol">washi.lol</a></p>
+    <div id="wrapper">
+        <header id="header">
+            <div class="avatar">
+                <img src="https://cdn.jsdelivr.net/gh/ident/hugo-coder-portfolio@master/images/avatar.jpg" alt="Avatar" />
             </div>
+            <h1><strong>思考空间</strong>
+            <p>探索 AI 与技术的深度思考<br>
+            记录学习与成长</p>
+            </h1>
+        </header>
+
+        <div id="main">
+            <div id="app">
+                <!-- Content will be rendered here -->
+            </div>
+        </div>
+
+        <footer id="footer">
+            <p>&copy; <span id="year"></span> 思考空间 • <a href="https://washi.lol">washi.lol</a></p>
         </footer>
     </div>
 
@@ -455,10 +463,8 @@
                 const html = `
                     <article>
                         <a href="#" onclick="renderHome(); return false;" class="back-link">← 返回文章列表</a>
-                        <header>
-                            <h1>${post.title}</h1>
-                            <div class="post-meta">${post.date}</div>
-                        </header>
+                        <h1>${post.title}</h1>
+                        <div class="post-meta">${post.date}</div>
                         <div class="markdown-content">${content}</div>
                     </article>
                 `;
