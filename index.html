@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>思考空间 - 技术博客</title>
+    <title>思考空间 - 探索 AI 与技术</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:300,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
     <style>
         * {
@@ -15,111 +15,122 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-color: #fbfbfc;
-            --card-bg: #ffffff;
-            --text-color: #1a1a2e;
-            --secondary-text: #64748b;
-            --border-color: #e2e8f0;
-            --hover-bg: #f8fafc;
-            --accent-color: #0f172a;
-            --code-bg: #f1f5f9;
-        }
-
         body {
-            font-family: 'Inter', 'Noto Serif SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: var(--text-color);
-            line-height: 1.7;
-            min-height: 100vh;
-            position: relative;
+            background: #f4f4f4;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 300;
+            color: #666;
+            line-height: 1.8;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.15) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400;
+            color: #444;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+            border-bottom: dotted 1px rgba(0, 0, 0, 0.25);
+        }
+
+        a:hover {
+            color: #f2849e;
+            border-bottom: none;
+        }
+
+        header {
+            text-align: center;
+            background: #fff;
+            padding: 50px 2em 1em 2em;
+        }
+
+        .avatar {
+            border-radius: 100%;
+            overflow: hidden;
+            display: inline-block;
+            margin-bottom: 1.5em;
+        }
+
+        .avatar img {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+        }
+
+        header h1 {
+            font-size: 1.5em;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        header h1 strong {
+            color: #000;
+            font-weight: 400;
+        }
+
+        #header {
+            padding-top: 0;
         }
 
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
-            position: relative;
-            z-index: 1;
+            padding: 0 2em;
         }
 
-        .site-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        #main {
+            background: #fff;
+            padding: 3em 2em;
         }
 
-        .site-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 12px;
+        section {
+            margin-bottom: 3em;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        .major {
+            margin-bottom: 2em;
+        }
+
+        .major h2 {
+            font-size: 1.8em;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        p {
+            margin-bottom: 1.5em;
+        }
+
+        .actions {
+            list-style: none;
+        }
+
+        .actions li {
+            display: inline-block;
+        }
+
+        .button {
+            appearance: none;
+            display: inline-block;
+            border-radius: 0.35em;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            color: #000;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            letter-spacing: -0.5px;
+            padding: 0.75em 2em;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
         }
 
-        .site-title .icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #6366f1, #0ea5e9);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-        }
-
-        .site-description {
-            font-size: 1.2rem;
-            color: var(--secondary-text);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        main {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        nav {
-            margin-top: 20px;
-        }
-
-        nav a {
-            color: var(--secondary-text);
-            text-decoration: none;
-            margin-right: 24px;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
+        .button:hover {
+            background: #f2849e;
+            border-color: #f2849e;
+            color: #fff;
         }
 
         .blog-list {
@@ -127,106 +138,113 @@
         }
 
         .blog-item {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 2em 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-item:first-child {
+            padding-top: 0;
         }
 
         .blog-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
 
         .blog-item a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            border-bottom: none;
         }
 
-        .blog-item:hover {
-            background-color: var(--hover-bg);
-            margin: 0 -20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            border-radius: 8px;
-        }
-
-        .blog-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 8px;
-            transition: color 0.2s;
-        }
-
-        .blog-item:hover .blog-title {
-            color: var(--accent-color);
+        .blog-item h3 {
+            font-size: 1.5em;
+            color: #000;
+            margin-bottom: 0.5em;
         }
 
         .blog-meta {
-            font-size: 0.875rem;
-            color: var(--secondary-text);
-            margin-bottom: 12px;
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 1em;
         }
 
         .blog-excerpt {
-            color: var(--secondary-text);
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.1em;
         }
 
-        /* Markdown content styles */
+        .blog-item:hover h3 {
+            color: #f2849e;
+        }
+
+        /* Article styles */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2em;
+        }
+
+        article h1 {
+            font-size: 2.5em;
+            color: #000;
+            margin-bottom: 0.5em;
+        }
+
+        .post-meta {
+            color: #999;
+            margin-bottom: 2.5em;
+            padding-bottom: 1em;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Markdown styles */
         .markdown-content {
-            font-family: 'Noto Serif SC', serif;
+            font-size: 1.15em;
         }
 
         .markdown-content h1 {
-            font-size: 2.2rem;
-            margin: 40px 0 20px;
-            font-weight: 600;
+            font-size: 2.2em;
+            margin: 1.5em 0 0.8em;
+            color: #000;
         }
 
         .markdown-content h2 {
-            font-size: 1.8rem;
-            margin: 35px 0 18px;
-            font-weight: 600;
+            font-size: 1.8em;
+            margin: 1.4em 0 0.7em;
+            color: #000;
         }
 
         .markdown-content h3 {
-            font-size: 1.4rem;
-            margin: 30px 0 15px;
-            font-weight: 600;
+            font-size: 1.5em;
+            margin: 1.3em 0 0.6em;
+            color: #000;
         }
 
         .markdown-content p {
-            margin-bottom: 18px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            margin-bottom: 1.2em;
         }
 
         .markdown-content ul,
         .markdown-content ol {
-            margin-bottom: 18px;
-            padding-left: 30px;
+            margin-bottom: 1.2em;
+            padding-left: 2em;
         }
 
         .markdown-content li {
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+            margin-bottom: 0.5em;
         }
 
         .markdown-content code {
-            background-color: var(--code-bg);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+            background: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 0.2em;
+            font-family: 'Courier New', monospace;
             font-size: 0.9em;
         }
 
         .markdown-content pre {
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 0.35em;
+            padding: 1.2em;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 1.5em 0;
         }
 
         .markdown-content pre code {
@@ -236,119 +254,119 @@
         }
 
         .markdown-content blockquote {
-            border-left: 4px solid var(--accent-color);
-            padding-left: 16px;
-            color: var(--secondary-text);
-            margin: 20px 0;
+            border-left: 4px solid #f2849e;
+            padding-left: 1em;
+            color: #888;
+            margin: 1.5em 0;
             font-style: italic;
         }
 
         .markdown-content img {
             max-width: 100%;
-            border-radius: 8px;
-            margin: 20px 0;
+            border-radius: 0.35em;
+            margin: 1.5em 0;
         }
 
         .markdown-content a {
-            color: var(--accent-color);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-
-        .markdown-content a:hover {
-            border-bottom-color: var(--accent-color);
+            color: #f2849e;
         }
 
         .markdown-content table {
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 1.5em 0;
             width: 100%;
         }
 
         .markdown-content th,
         .markdown-content td {
-            border: 1px solid var(--border-color);
-            padding: 12px 16px;
+            border: 1px solid #ddd;
+            padding: 0.8em 1em;
             text-align: left;
         }
 
         .markdown-content th {
-            background-color: var(--hover-bg);
-            font-weight: 600;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .back-link:hover {
-            color: var(--accent-color);
-        }
-
-        article header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-
-        article .post-meta {
-            color: var(--secondary-text);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            background: #f9f9f9;
+            font-weight: 400;
         }
 
         footer {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-color);
             text-align: center;
-            color: var(--secondary-text);
-            font-size: 0.875rem;
+            padding: 3em 0 2em;
+            font-size: 0.9em;
+            color: #999;
         }
 
-         @media (max-width: 768px) {
-             .container {
-                 padding: 30px 16px;
-             }
+        footer ul {
+            list-style: none;
+            margin-bottom: 1.5em;
+        }
 
-             .site-header, main {
-                 padding: 24px 20px;
-             }
+        footer ul li {
+            display: inline-block;
+            padding: 0 1em;
+        }
 
-             .site-title {
-                 font-size: 2rem;
-                 gap: 10px;
-             }
+        footer ul li a {
+            color: #666;
+        }
 
-             .site-title .icon {
-                 width: 40px;
-                 height: 40px;
-                 font-size: 22px;
-             }
+        footer ul li a:hover {
+            color: #f2849e;
+        }
 
-             .site-header h1 {
-                 font-size: 2rem;
-             }
+        .copyright {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 2em;
+            margin-top: 2em;
+        }
 
-             .markdown-content h1 {
-                 font-size: 1.8rem;
-             }
+        @media screen and (max-width: 736px) {
+            body {
+                background: #fff;
+            }
 
+            .container {
+                padding: 0 1em;
+            }
 
-            .markdown-content h2 {
-                font-size: 1.5rem;
+            #header {
+                padding: 3em 1em 1em;
+            }
+
+            #main {
+                padding: 2em 1em;
+            }
+
+            article h1 {
+                font-size: 2em;
+            }
+
+            .avatar img {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <!-- Index page will be rendered here -->
+    <header id="header">
+        <div class="avatar">
+            <img src="https://cdn.jsdelivr.net/gh/ident/hugo-coder-portfolio@master/images/avatar.jpg" alt="Avatar" />
+        </div>
+        <h1><strong>思考空间</strong><br>
+        探索 AI 与技术的深度思考</h1>
+    </header>
+
+    <div id="main" class="container">
+        <div id="app">
+            <!-- Content will be rendered here -->
+        </div>
+
+        <footer>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> 思考空间 • <a href="https://washi.lol">washi.lol</a></p>
+            </div>
+        </footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
@@ -391,14 +409,10 @@
         // Render home page (blog list)
         function renderHome() {
             let html = `
-                <div class="site-header">
-                    <h1 class="site-title">
-                        <span class="icon">💭</span>
-                        ${blogConfig.title}
-                    </h1>
-                    <p class="site-description">${blogConfig.description}</p>
-                </div>
-                <main>
+                <section>
+                    <header class="major">
+                        <h2>近期文章</h2>
+                    </header>
                     <ul class="blog-list">
             `;
 
@@ -406,7 +420,7 @@
                 html += `
                     <li class="blog-item">
                         <a href="#" onclick="loadPost('${post.id}'); return false;">
-                            <h2 class="blog-title">${post.title}</h2>
+                            <h3>${post.title}</h3>
                             <div class="blog-meta">${post.date}</div>
                             <p class="blog-excerpt">${post.excerpt}</p>
                         </a>
@@ -416,10 +430,7 @@
 
             html += `
                     </ul>
-                </main>
-                <footer>
-                    <p>© <span id="year"></span> 思考空间 • 静水流深</p>
-                </footer>
+                </section>
             `;
 
             app.innerHTML = html;
@@ -442,17 +453,14 @@
                 const content = marked.parse(markdown);
 
                 const html = `
-                    <div class="site-header">
-                        <a href="#" onclick="renderHome(); return false;" class="back-link">← 返回博客列表</a>
-                        <h1>${post.title}</h1>
-                        <div class="post-meta">${post.date}</div>
-                    </div>
-                    <main>
+                    <article>
+                        <a href="#" onclick="renderHome(); return false;" class="back-link">← 返回文章列表</a>
+                        <header>
+                            <h1>${post.title}</h1>
+                            <div class="post-meta">${post.date}</div>
+                        </header>
                         <div class="markdown-content">${content}</div>
-                    </main>
-                    <footer>
-                        <p>© <span id="year"></span> 思考空间 • 静水流深</p>
-                    </footer>
+                    </article>
                 `;
 
                 app.innerHTML = html;
@@ -468,7 +476,7 @@
             } catch (error) {
                 console.error('Error loading post:', error);
                 app.innerHTML = `
-                    <a href="#" onclick="renderHome(); return false;" class="back-link">← Back to blog</a>
+                    <a href="#" onclick="renderHome(); return false;" class="back-link">← 返回博客</a>
                     <h1>Error</h1>
                     <p>Failed to load post. Please check if the Markdown file exists.</p>
                 `;
@@ -493,6 +501,9 @@
 
         // Listen to hash changes
         window.addEventListener('hashchange', handleRoute);
+
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
