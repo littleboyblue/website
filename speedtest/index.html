@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网络速度测试</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>网络速度测试</h1>
+        </header>
+
+        <main>
+            <section class="test-controls">
+                <div class="speed-card">
+                    <h2>下载速度</h2>
+                    <div class="speed-display" id="download-speed">0.00</div>
+                    <div class="unit">Mbps</div>
+                    <button id="download-test-btn" class="test-btn">开始下载测试</button>
+                </div>
+
+                <div class="speed-card">
+                    <h2>上传速度</h2>
+                    <div class="speed-display" id="upload-speed">0.00</div>
+                    <div class="unit">Mbps</div>
+                    <button id="upload-test-btn" class="test-btn">开始上传测试</button>
+                </div>
+            </section>
+
+            <section class="results">
+                <div class="current-results">
+                    <h3>最近测试结果</h3>
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>下载 (Mbps)</th>
+                                <th>上传 (Mbps)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                        </tbody>
+                    </table>
+                    <button id="clear-history" class="clear-btn">清空历史</button>
+                </div>
+
+                <div class="chart-container">
+                    <h3>速度趋势图表</h3>
+                    <canvas id="speed-chart"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>测试结果仅供参考，实际速度请以运营商为准</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

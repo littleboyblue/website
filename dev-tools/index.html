@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发工具集合 - Developer Utilities</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>开发小工具集合</h1>
+            <p>常用开发工具在线使用</p>
+        </header>
+
+        <div class="tool-tabs">
+            <button class="tab-btn active" data-tab="timestamp">时间戳转换</button>
+            <button class="tab-btn" data-tab="color">色值转换</button>
+            <button class="tab-btn" data-tab="json">JSON 格式化</button>
+            <button class="tab-btn" data-tab="base64">Base64 编码</button>
+            <button class="tab-btn" data-tab="uuid">UUID 生成</button>
+        </div>
+
+        <div class="tab-content">
+            <!-- 时间戳转换 -->
+            <div id="timestamp" class="tool-panel active">
+                <h2>时间戳转换</h2>
+                <div class="tool-row">
+                    <div class="input-group">
+                        <label>时间戳</label>
+                        <input type="text" id="timestamp-input" placeholder="输入10位或13位时间戳">
+                        <button id="get-current" class="btn secondary">获取当前时间戳</button>
+                    </div>
+                    <div class="input-group">
+                        <label>日期时间</label>
+                        <input type="text" id="datetime-input" placeholder="格式: YYYY-MM-DD HH:mm:ss">
+                        <button id="get-current-datetime" class="btn secondary">获取当前时间</button>
+                    </div>
+                </div>
+                <div class="result-area">
+                    <h3>转换结果</h3>
+                    <div id="timestamp-result" class="result-box"></div>
+                </div>
+            </div>
+
+            <!-- 色值转换 -->
+            <div id="color" class="tool-panel">
+                <h2>色值转换</h2>
+                <div class="color-picker-wrapper">
+                    <input type="color" id="color-picker">
+                </div>
+                <div class="tool-row">
+                    <div class="input-group">
+                        <label>HEX</label>
+                        <input type="text" id="hex-input" placeholder="#ffffff">
+                    </div>
+                    <div class="input-group">
+                        <label>RGB</label>
+                        <input type="text" id="rgb-input" placeholder="rgb(255, 255, 255)">
+                    </div>
+                    <div class="input-group">
+                        <label>HSL</label>
+                        <input type="text" id="hsl-input" placeholder="hsl(0, 0%, 100%)">
+                    </div>
+                </div>
+                <div class="color-preview" id="color-preview">
+                    <span>预览</span>
+                </div>
+            </div>
+
+            <!-- JSON格式化 -->
+            <div id="json" class="tool-panel">
+                <h2>JSON 格式化/压缩</h2>
+                <div class="textarea-group">
+                    <label>输入 JSON</label>
+                    <textarea id="json-input" placeholder="在此粘贴你的JSON..."></textarea>
+                </div>
+                <div class="tool-actions">
+                    <button id="format-json" class="btn primary">格式化</button>
+                    <button id="minify-json" class="btn secondary">压缩</button>
+                    <button id="clear-json" class="btn secondary">清空</button>
+                </div>
+                <div class="textarea-group">
+                    <label>输出结果</label>
+                    <textarea id="json-output" readonly placeholder="格式化结果将显示在这里..."></textarea>
+                </div>
+            </div>
+
+            <!-- Base64编码 -->
+            <div id="base64" class="tool-panel">
+                <h2>Base64 编码/解码</h2>
+                <div class="textarea-group">
+                    <label>输入文本</label>
+                    <textarea id="base64-input" placeholder="输入需要编码或解码的文本..."></textarea>
+                </div>
+                <div class="tool-actions">
+                    <button id="encode-base64" class="btn primary">编码</button>
+                    <button id="decode-base64" class="btn secondary">解码</button>
+                    <button id="clear-base64" class="btn secondary">清空</button>
+                </div>
+                <div class="textarea-group">
+                    <label>输出结果</label>
+                    <textarea id="base64-output" readonly placeholder="结果将显示在这里..."></textarea>
+                </div>
+            </div>
+
+            <!-- UUID生成 -->
+            <div id="uuid" class="tool-panel">
+                <h2>UUID 生成器</h2>
+                <div class="uuid-controls">
+                    <label>生成数量: </label>
+                    <input type="number" id="uuid-count" min="1" max="100" value="1">
+                    <button id="generate-uuid" class="btn primary">生成 UUID</button>
+                </div>
+                <div class="result-area">
+                    <div id="uuid-result" class="result-box"></div>
+                    <button id="copy-uuid" class="btn secondary" style="margin-top: 10px; display: none;">复制全部</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: white;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.test-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.speed-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.speed-card:hover {
+    transform: translateY(-5px);
+}
+
+.speed-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.speed-display {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #667eea;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.unit {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.test-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.test-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.test-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.results {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.results h3 {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 1.3rem;
+}
+
+.current-results {
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+}
+
+tr:hover {
+    background: #f8f9fa;
+}
+
+.clear-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    background: #d32f2f;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(255,255,255,0.8);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .speed-display {
+        font-size: 2.8rem;
+    }
+
+    .test-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+}
