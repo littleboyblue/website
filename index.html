@@ -131,6 +131,7 @@
               width: 20px;
               height: 20px;
               fill: currentColor;
+              stroke: currentColor;
           }
 
           .theme-label {
@@ -787,10 +788,21 @@
             返回
         </a>
         <div class="theme-toggle" onclick="toggleTheme();">
-            <svg class="theme-icon" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"></path>
             </svg>
-            <span class="theme-label">深色模式</span>
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"></line>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"></line>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"></line>
+            </svg>
+            <span class="theme-label"><span class="theme-text">深色模式</span></span>
         </div>
     </div>
 
@@ -883,17 +895,35 @@
          const homeWrapper = document.getElementById('home-wrapper');
          const homeApp = document.getElementById('home-app');
 
-         // Theme toggle
-         function toggleTheme() {
-             isDarkMode = !isDarkMode;
-             document.body.classList.toggle('dark-mode', isDarkMode);
-             localStorage.setItem('dark-mode', isDarkMode);
-         }
+          // Theme toggle
+          function updateThemeUI() {
+              const moonIcon = document.querySelector('.theme-icon-moon');
+              const sunIcon = document.querySelector('.theme-icon-sun');
+              const themeText = document.querySelector('.theme-text');
 
-         // Initialize theme
-         if (isDarkMode) {
-             document.body.classList.add('dark-mode');
-         }
+              if (isDarkMode) {
+                  moonIcon.style.display = 'block';
+                  sunIcon.style.display = 'none';
+                  themeText.textContent = '浅色模式';
+              } else {
+                  moonIcon.style.display = 'none';
+                  sunIcon.style.display = 'block';
+                  themeText.textContent = '深色模式';
+              }
+          }
+
+          function toggleTheme() {
+              isDarkMode = !isDarkMode;
+              document.body.classList.toggle('dark-mode', isDarkMode);
+              localStorage.setItem('dark-mode', isDarkMode);
+              updateThemeUI();
+          }
+
+          // Initialize theme
+          if (isDarkMode) {
+              document.body.classList.add('dark-mode');
+          }
+          updateThemeUI();
 
          // Go back to home
          function goBack() {
@@ -1047,6 +1077,9 @@
                       `;
                       currentPost = postId;
                       window.location.hash = `#${postId}`;
+
+                      // Update theme UI to match current state
+                      updateThemeUI();
 
                       // Highlight code blocks
                       document.querySelectorAll('pre code').forEach((block) => {
