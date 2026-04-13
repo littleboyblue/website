@@ -974,24 +974,29 @@
              });
          }
 
-         // Render home page (blog list)
-          function renderHome() {
-              // Show home, hide post layout
-              topBar.style.display = 'none';
-              postLayout.style.display = 'none';
-              homeWrapper.style.display = 'block';
-              document.getElementById('wrapper').style.display = 'block';
-              document.getElementById('header').style.display = 'flex';
-              document.getElementById('main').style.display = 'block';
-              document.getElementById('footer').style.display = 'block';
+          // Render home page (blog list)
+           function renderHome() {
+               // Show home, hide post layout
+               topBar.style.display = 'none';
+               postLayout.style.display = 'none';
+               homeWrapper.style.display = 'block';
+               document.getElementById('wrapper').style.display = 'block';
+               document.getElementById('header').style.display = 'flex';
+               document.getElementById('main').style.display = 'block';
+               document.getElementById('footer').style.display = 'block';
 
-              let html = `
-                  <section>
-                      <header class="major">
-                          <h2>近期文章</h2>
-                      </header>
-                      <ul class="blog-list">
-              `;
+               // Force light mode on home page - looks better with background video
+               isDarkMode = false;
+               localStorage.setItem('dark-mode', isDarkMode);
+               document.body.classList.remove('dark-mode');
+
+               let html = `
+                   <section>
+                       <header class="major">
+                           <h2>近期文章</h2>
+                       </header>
+                       <ul class="blog-list">
+               `;
 
               [...blogConfig.posts].sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(post => {
                   html += `
