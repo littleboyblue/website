@@ -248,13 +248,13 @@
               background: #161625;
           }
 
-          .markdown-content {
-              max-width: 850px;
-              margin: 0 auto;
-              padding: 40px 60px;
-              word-wrap: break-word;
-              overflow-wrap: break-word;
-          }
+           .markdown-content {
+               max-width: 1050px;
+               margin: 0 auto;
+               padding: 40px 60px;
+               word-wrap: break-word;
+               overflow-wrap: break-word;
+           }
 
           /* Home page keeps original style */
           #wrapper {
@@ -893,26 +893,30 @@
              renderHome();
          }
 
-         // Extract table of contents from markdown content
-         function extractToc(html) {
-             const tempDiv = document.createElement('div');
-             tempDiv.innerHTML = html;
+          // Extract table of contents from markdown content
+          function extractToc(html) {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = html;
 
-             const headings = tempDiv.querySelectorAll('h1, h2, h3');
-             let toc = [];
+              const headings = tempDiv.querySelectorAll('h1, h2, h3');
+              let toc = [];
 
-             headings.forEach((heading, index) => {
-                 const id = `heading-${index}`;
-                 heading.id = id;
-                 toc.push({
-                     id: id,
-                     text: heading.textContent,
-                     level: parseInt(heading.tagName[1])
-                 });
-             });
+              headings.forEach((heading, index) => {
+                  const id = `heading-${index}`;
+                  heading.id = id;
+                  toc.push({
+                      id: id,
+                      text: heading.textContent,
+                      level: parseInt(heading.tagName[1])
+                  });
+              });
 
-             return toc;
-         }
+              // Return both TOC and the modified html with ids
+              return {
+                  toc: toc,
+                  html: tempDiv.innerHTML
+              };
+          }
 
          // Render TOC
          function renderToc(toc) {
@@ -1019,14 +1023,14 @@
                   .then(content => {
                       const html = marked.parse(content);
 
-                      // Extract TOC before rendering
-                      const toc = extractToc(html);
-                      renderToc(toc);
+                      // Extract TOC before rendering, this also adds ids to headings
+                      const result = extractToc(html);
+                      renderToc(result.toc);
                       setupScrollSpy();
 
                       app.innerHTML = `
                           <div class="markdown-content">
-                              ${html}
+                              ${result.html}
                           </div>
                       `;
                       currentPost = postId;
