@@ -788,10 +788,11 @@
             返回
         </a>
         <div class="theme-toggle" onclick="toggleTheme();">
+            <span class="theme-label">切换主题</span>
             <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" style="display: none;">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"></path>
             </svg>
-            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24">
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" style="display: none;">
                 <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
                 <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>
                 <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"></line>
@@ -802,7 +803,6 @@
                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"></line>
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"></line>
             </svg>
-            <span class="theme-label"><span class="theme-text">深色模式</span></span>
         </div>
     </div>
 
@@ -899,16 +899,15 @@
           function updateThemeUI() {
               const moonIcon = document.querySelector('.theme-icon-moon');
               const sunIcon = document.querySelector('.theme-icon-sun');
-              const themeText = document.querySelector('.theme-text');
 
+              // In light mode: show moon icon (click to go dark)
+              // In dark mode: show sun icon (click to go light)
               if (isDarkMode) {
-                  moonIcon.style.display = 'block';
-                  sunIcon.style.display = 'none';
-                  themeText.textContent = '浅色模式';
-              } else {
                   moonIcon.style.display = 'none';
                   sunIcon.style.display = 'block';
-                  themeText.textContent = '深色模式';
+              } else {
+                  moonIcon.style.display = 'block';
+                  sunIcon.style.display = 'none';
               }
           }
 
