@@ -846,7 +846,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js?v=1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
         // Configure marked
         marked.setOptions({
             highlight: (code, lang) => {
@@ -859,228 +859,267 @@
             gfm: true
         });
 
-                 // Blog configuration
-          const blogConfig = {
-              title: '思考空间',
-              description: '探索 AI 与技术的深度思考，记录学习与成长',
-              posts: [
-                  {
-                      id: 'what-is-skill-how-to-build',
-                      title: '什么是skill，如何从0开发一个skill',
-                      date: '2026年4月13日',
-                      excerpt: '详细介绍skill的概念，以及如何从零开发一个完整的skill，包括核心框架、开发流程、调试技巧和最佳实践。',
-                      file: 'posts/2026-04-13_002.md'
-                  },
-                  {
-                      id: 'what-is-openclaw',
-                      title: '什么是OpenClaw（龙虾）？它都能干什么？',
-                      date: '2026年4月22日',
-                      excerpt: '深入介绍OpenClaw框架的核心设计理念、模块化架构、典型应用场景及其与Agent、Workflow等方案的对比。',
-                      file: 'posts/2026-04-22_006.md'
-                  },
-                  {
-                      id: 'agent-mcp-skill-intro',
-                      title: 'Agent、MCP 和 Skill：AI 智能体的模块化科普',
-                      date: '2026年4月10日',
-                      excerpt: '用通俗易懂的方式解释 AI 智能体领域的三个核心概念：Agent、MCP 和 Skill，以及它们之间的关系，为什么模块化是未来方向。',
-                      file: 'posts/2026-04-10_001.md'
-                  },
-                  {
-                      id: 'ai-agent-claudecode-opencode-hermes',
-                      title: 'ClaudeCode vs opencode vs Hermes Agent —— 三款AI编程智能体深度对比',
-                      date: '2026年4月15日',
-                      excerpt: '详细介绍三款背景各异的AI编程智能体，从定位、架构、设计理念到适用场景，做全面对比分析，帮你选择适合自己的工具。',
-                      file: 'posts/2026-04-15_003.md'
-                  },
-                  {
-                      id: 'opencode-subscription-guide',
-                      title: 'opencode订阅计划完全指南 —— 看懂go和zen两种计划，以及如何使用免费模型',
-                      date: '2026年4月16日',
-                      excerpt: '详细介绍opencode是什么工具，go和zen两种订阅计划各自的定位、权益和适用人群，以及如何免费使用opencode，帮你做出最适合自己的选择。',
-                      file: 'posts/2026-04-22_005.md'
-                  },
-                  {
-                      id: 'debug-optimize-skill',
-                      title: '如何调试和优化一个skill',
-                      date: '2026年4月21日',
-                      excerpt: '系统性地介绍调试和优化skill的方法和技巧，包括日志记录、性能优化、输入验证及监控告警等实用实践。',
-                      file: 'posts/2026-04-22_004.md'
-                  }
-];
-               headings.forEach((heading, index) => {
-                  const id = `heading-${index}`;
-                  heading.id = id;
-                  toc.push({
-                      id: id,
-                      text: heading.textContent,
-                      level: parseInt(heading.tagName[1])
-                  });
-              });
+        // Blog configuration
+        const blogConfig = {
+            title: '思考空间',
+            description: '探索 AI 与技术的深度思考，记录学习与成长',
+            posts: [
+                {
+                    id: 'post-001',
+                    title: 'Agent、MCP 和 Skill：AI 智能体的模块化科普',
+                    date: '2026年4月10日',
+                    excerpt: '用通俗易懂的方式解释 AI 智能体领域的三个核心概念：Agent、MCP 和 Skill，以及它们之间的关系，为什么模块化是未来方向。',
+                    file: 'posts/2026-04-10_001.md'
+                },
+                {
+                    id: 'post-002',
+                    title: '什么是skill，如何从0开发一个skill',
+                    date: '2026年4月13日',
+                    excerpt: '详细介绍skill的概念，以及如何从零开发一个完整的skill，包括核心框架、开发流程、调试技巧和最佳实践。',
+                    file: 'posts/2026-04-13_002.md'
+                },
+                {
+                    id: 'post-003',
+                    title: 'ClaudeCode vs opencode vs Hermes Agent —— 三款AI编程智能体深度对比',
+                    date: '2026年4月15日',
+                    excerpt: '详细介绍三款背景各异的AI编程智能体，从定位、架构、设计理念到适用场景，做全面对比分析，帮你选择适合自己的工具。',
+                    file: 'posts/2026-04-15_003.md'
+                },
+                {
+                    id: 'post-004',
+                    title: 'opencode订阅计划完全指南 —— 看懂go和zen两种计划，以及如何使用免费模型',
+                    date: '2026年4月16日',
+                    excerpt: '详细介绍opencode是什么工具，go和zen两种订阅计划各自的定位、权益和适用人群，以及如何免费使用opencode，帮你做出最适合自己的选择。',
+                    file: 'posts/2026-04-22_005.md'
+                },
+                {
+                    id: 'post-005',
+                    title: '如何调试和优化一个skill',
+                    date: '2026年4月21日',
+                    excerpt: '系统性地介绍调试和优化skill的方法和技巧，包括日志记录、性能优化、输入验证及监控告警等实用实践。',
+                    file: 'posts/2026-04-22_004.md'
+                },
+                {
+                    id: 'post-006',
+                    title: '什么是OpenClaw（龙虾）？它都能干什么？',
+                    date: '2026年4月22日',
+                    excerpt: '深入介绍OpenClaw框架的核心设计理念、模块化架构、典型应用场景及其与Agent、Workflow等方案的对比。',
+                    file: 'posts/2026-04-22_006.md'
+                }
+            ]
+        };
 
-              // Return both TOC and the modified html with ids
-              return {
-                  toc: toc,
-                  html: tempDiv.innerHTML
-              };
-          }
+        function getPostsSortedByIdDesc() {
+            return [...blogConfig.posts].sort((a, b) => {
+                const aNum = Number(a.id.replace('post-', ''));
+                const bNum = Number(b.id.replace('post-', ''));
+                return bNum - aNum;
+            });
+        }
 
-         // Render TOC
-         function renderToc(toc) {
-             tocMenu.innerHTML = '';
+        const app = document.getElementById('app');
+        const homeApp = document.getElementById('home-app');
+        const topBar = document.getElementById('top-bar');
+        const postLayout = document.getElementById('post-layout');
+        const homeWrapper = document.getElementById('home-wrapper');
+        const contentArea = document.getElementById('content-area');
+        const tocMenu = document.getElementById('toc-menu');
+        const moonIcon = document.querySelector('.theme-icon-moon');
+        const sunIcon = document.querySelector('.theme-icon-sun');
 
-             toc.forEach(item => {
-                 const li = document.createElement('li');
-                 const a = document.createElement('a');
-                 a.href = `#${item.id}`;
-                 a.textContent = item.text;
-                 a.classList.add(`toc-h${item.level}`);
+        let currentPost = null;
+        let isDarkMode = localStorage.getItem('dark-mode') === 'true';
 
-                 a.addEventListener('click', (e) => {
-                     e.preventDefault();
-                     const target = document.getElementById(item.id);
-                     if (target) {
-                         target.scrollIntoView({behavior: 'smooth'});
-                     }
+        function updateThemeUI() {
+            if (isDarkMode) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+        }
 
-                     // Highlight active
-                     tocMenu.querySelectorAll('a').forEach(el => el.classList.remove('active'));
-                     a.classList.add('active');
-                 });
+        function applyTheme() {
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            updateThemeUI();
+        }
 
-                 li.appendChild(a);
-                 tocMenu.appendChild(li);
-             });
-         }
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            localStorage.setItem('dark-mode', String(isDarkMode));
+            applyTheme();
+        }
 
-         // Scroll spy for TOC
-         function setupScrollSpy() {
-             contentArea.addEventListener('scroll', () => {
-                 const headings = contentArea.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3');
-                 let currentId = null;
+        function goBack() {
+            window.location.hash = '';
+        }
 
-                 headings.forEach(heading => {
-                     const rect = heading.getBoundingClientRect();
-                     if (rect.top <= 100) {
-                         currentId = heading.id;
-                     }
-                 });
+        function extractToc(html) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const headings = tempDiv.querySelectorAll('h1, h2, h3');
+            const toc = [];
 
-                 if (currentId) {
-                     tocMenu.querySelectorAll('a').forEach(a => {
-                         a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
-                     });
-                 }
-             });
-         }
+            headings.forEach((heading, index) => {
+                const id = `heading-${index}`;
+                heading.id = id;
+                toc.push({
+                    id: id,
+                    text: heading.textContent,
+                    level: parseInt(heading.tagName[1], 10)
+                });
+            });
 
-          // Render home page (blog list)
-           function renderHome() {
-               // Show home, hide post layout
-               topBar.style.display = 'none';
-               postLayout.style.display = 'none';
-               homeWrapper.style.display = 'block';
-               document.getElementById('wrapper').style.display = 'block';
-               document.getElementById('header').style.display = 'flex';
-               document.getElementById('main').style.display = 'block';
-               document.getElementById('footer').style.display = 'block';
+            return {
+                toc: toc,
+                html: tempDiv.innerHTML
+            };
+        }
 
-               // Force light mode on home page - looks better with background video
-               isDarkMode = false;
-               localStorage.setItem('dark-mode', isDarkMode);
-               document.body.classList.remove('dark-mode');
+        function renderToc(toc) {
+            tocMenu.innerHTML = '';
 
-               let html = `
-                   <section>
-                       <header class="major">
-                           <h2>近期文章</h2>
-                       </header>
-                       <ul class="blog-list">
-               `;
+            toc.forEach((item) => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${item.id}`;
+                a.textContent = item.text;
+                a.classList.add(`toc-h${item.level}`);
 
-              blogConfig.posts.forEach(post => {
-                  html += `
-                      <li class="blog-item">
-                          <a href="#" onclick="loadPost('${post.id}'); return false;">
-                              <h3>${post.title}</h3>
-                              <div class="blog-meta">${post.date}</div>
-                              <p class="blog-excerpt">${post.excerpt}</p>
-                          </a>
-                      </li>
-                  `;
-              });
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.getElementById(item.id);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
 
-              html += `</ul></section>`;
-              homeApp.innerHTML = html;
-              currentPost = null;
-              window.location.hash = '';
-          }
+                    tocMenu.querySelectorAll('a').forEach((el) => el.classList.remove('active'));
+                    a.classList.add('active');
+                });
 
-          // Load and render a post
-          function loadPost(postId) {
-              const post = blogConfig.posts.find(p => p.id === postId);
-              if (!post) return;
+                li.appendChild(a);
+                tocMenu.appendChild(li);
+            });
+        }
 
-              // Hide home, show post layout
-              topBar.style.display = 'flex';
-              postLayout.style.display = 'flex';
-              homeWrapper.style.display = 'none';
-              document.getElementById('wrapper').style.display = 'none';
-              document.getElementById('header').style.display = 'none';
-              document.getElementById('main').style.display = 'none';
-              document.getElementById('footer').style.display = 'none';
+        function setupScrollSpy() {
+            contentArea.onscroll = () => {
+                const headings = contentArea.querySelectorAll('.markdown-content h1, .markdown-content h2, .markdown-content h3');
+                let currentId = null;
 
-              fetch(post.file)
-                  .then(response => response.text())
-                  .then(content => {
-                      const html = marked.parse(content);
+                headings.forEach((heading) => {
+                    const rect = heading.getBoundingClientRect();
+                    if (rect.top <= 100) {
+                        currentId = heading.id;
+                    }
+                });
 
-                      // Extract TOC before rendering, this also adds ids to headings
-                      const result = extractToc(html);
-                      renderToc(result.toc);
-                      setupScrollSpy();
+                if (currentId) {
+                    tocMenu.querySelectorAll('a').forEach((a) => {
+                        a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
+                    });
+                }
+            };
+        }
 
-                      app.innerHTML = `
-                          <div class="markdown-content">
-                              ${result.html}
-                          </div>
-                      `;
-                      currentPost = postId;
-                      window.location.hash = `#${postId}`;
+        function renderHome() {
+            topBar.style.display = 'none';
+            postLayout.style.display = 'none';
+            homeWrapper.style.display = 'block';
+            document.getElementById('wrapper').style.display = 'block';
+            document.getElementById('header').style.display = 'flex';
+            document.getElementById('main').style.display = 'block';
+            document.getElementById('footer').style.display = 'block';
 
-                      // Update theme UI to match current state
-                      updateThemeUI();
+            // Home always keeps light theme for readability with background video
+            document.body.classList.remove('dark-mode');
 
-                      // Highlight code blocks
-                      document.querySelectorAll('pre code').forEach((block) => {
-                          hljs.highlightBlock(block);
-                      });
-                  })
-                  .catch(error => {
-                      app.innerHTML = `<p>Error loading post: ${error.message}</p>`;
-                  });
-          }
+            let html = `
+                <section>
+                    <header class="major">
+                        <h2>近期文章</h2>
+                    </header>
+                    <ul class="blog-list">
+            `;
 
-          // Handle hash change
-          function handleHashChange() {
-              const hash = window.location.hash.slice(1);
-              if (hash) {
-                  loadPost(hash);
-              } else {
-                  renderHome();
-              }
-          }
+            getPostsSortedByIdDesc().forEach((post) => {
+                html += `
+                    <li class="blog-item">
+                        <a href="#" onclick="loadPost('${post.id}'); return false;">
+                            <h3>${post.title}</h3>
+                            <div class="blog-meta">${post.date}</div>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                        </a>
+                    </li>
+                `;
+            });
 
-          // Expose functions globally
-          window.loadPost = loadPost;
-          window.goBack = goBack;
-          window.toggleTheme = toggleTheme;
+            html += '</ul></section>';
+            homeApp.innerHTML = html;
+            currentPost = null;
+        }
 
-          // Init
-          document.getElementById('year').textContent = new Date().getFullYear();
-          window.addEventListener('hashchange', handleHashChange);
+        function loadPost(postId) {
+            const post = blogConfig.posts.find((p) => p.id === postId);
+            if (!post) return;
 
-          // Check if we have a hash on load
-          handleHashChange();
+            topBar.style.display = 'flex';
+            postLayout.style.display = 'flex';
+            homeWrapper.style.display = 'none';
+            document.getElementById('wrapper').style.display = 'none';
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('main').style.display = 'none';
+            document.getElementById('footer').style.display = 'none';
+
+            fetch(post.file)
+                .then((response) => response.text())
+                .then((content) => {
+                    const html = marked.parse(content);
+                    const result = extractToc(html);
+
+                    app.innerHTML = `
+                        <div class="markdown-content">
+                            ${result.html}
+                        </div>
+                    `;
+
+                    renderToc(result.toc);
+                    setupScrollSpy();
+
+                    currentPost = postId;
+                    window.location.hash = `#${postId}`;
+
+                    applyTheme();
+
+                    document.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                })
+                .catch((error) => {
+                    app.innerHTML = `<p>Error loading post: ${error.message}</p>`;
+                });
+        }
+
+        function handleHashChange() {
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                loadPost(hash);
+            } else {
+                renderHome();
+            }
+        }
+
+        window.loadPost = loadPost;
+        window.goBack = goBack;
+        window.toggleTheme = toggleTheme;
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Set icon state immediately
+        updateThemeUI();
+        handleHashChange();
     </script>
 </body>
 </html>
