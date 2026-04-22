@@ -859,10 +859,11 @@
             gfm: true
         });
 
-        // Blog configuration
-         const blogConfig = {
-             title: '思考空间',
-             description: '探索 AI 与技术的深度思考，记录学习与成长',
+                 // Blog configuration
+          const blogConfig = {
+              title: '思考空间',
+              description: '探索 AI 与技术的深度思考，记录学习与成长',
+              posts: [
                   {
                       id: 'what-is-skill-how-to-build',
                       title: '什么是skill，如何从0开发一个skill',
@@ -896,17 +897,16 @@
                       title: 'opencode订阅计划完全指南 —— 看懂go和zen两种计划，以及如何使用免费模型',
                       date: '2026年4月16日',
                       excerpt: '详细介绍opencode是什么工具，go和zen两种订阅计划各自的定位、权益和适用人群，以及如何免费使用opencode，帮你做出最适合自己的选择。',
-                      file: 'posts/2026-04-16_005.md'
+                      file: 'posts/2026-04-22_005.md'
                   },
                   {
                       id: 'debug-optimize-skill',
                       title: '如何调试和优化一个skill',
                       date: '2026年4月21日',
                       excerpt: '系统性地介绍调试和优化skill的方法和技巧，包括日志记录、性能优化、输入验证及监控告警等实用实践。',
-                      file: 'posts/2026-04-21_004.md'
+                      file: 'posts/2026-04-22_004.md'
                   }
-
-              headings.forEach((heading, index) => {
+              ]headings.forEach((heading, index) => {
                   const id = `heading-${index}`;
                   heading.id = id;
                   toc.push({
