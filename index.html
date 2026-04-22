@@ -1041,7 +1041,7 @@
                        <ul class="blog-list">
                `;
 
-              [...blogConfig.posts].sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(post => {
+              blogConfig.posts.forEach(post => {
                   html += `
                       <li class="blog-item">
                           <a href="#" onclick="loadPost('${post.id}'); return false;">
