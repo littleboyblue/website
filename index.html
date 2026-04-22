@@ -863,20 +863,19 @@
          const blogConfig = {
              title: '思考空间',
              description: '探索 AI 与技术的深度思考，记录学习与成长',
-              posts: [
                   {
-                      id: 'what-is-openclaw',
-                      title: '什么是OpenClaw（龙虾）',
-                      date: '2026年4月22日',
-                      excerpt: '深入介绍OpenClaw框架的核心设计理念、模块化架构、典型应用场景及其与Agent、Workflow等方案的对比。',
-                      file: 'posts/2026-04-10_006.md'
+                      id: 'what-is-skill-how-to-build',
+                      title: '什么是skill，如何从0开发一个skill',
+                      date: '2026年4月13日',
+                      excerpt: '详细介绍skill的概念，以及如何从零开发一个完整的skill，包括核心框架、开发流程、调试技巧和最佳实践。',
+                      file: 'posts/2026-04-13_002.md'
                   },
                   {
-                      id: 'debug-optimize-skill',
-                      title: '如何调试和优化一个skill',
-                      date: '2026年4月21日',
-                      excerpt: '系统性地介绍调试和优化skill的方法和技巧，包括日志记录、性能优化、输入验证及监控告警等实用实践。',
-                      file: 'posts/2026-04-10_004.md'
+                      id: 'what-is-openclaw',
+                      title: '什么是OpenClaw（龙虾）？它都能干什么？',
+                      date: '2026年4月22日',
+                      excerpt: '深入介绍OpenClaw框架的核心设计理念、模块化架构、典型应用场景及其与Agent、Workflow等方案的对比。',
+                      file: 'posts/2026-04-22_003.md'
                   },
                   {
                       id: 'agent-mcp-skill-intro',
@@ -890,73 +889,22 @@
                       title: 'ClaudeCode vs opencode vs Hermes Agent —— 三款AI编程智能体深度对比',
                       date: '2026年4月15日',
                       excerpt: '详细介绍三款背景各异的AI编程智能体，从定位、架构、设计理念到适用场景，做全面对比分析，帮你选择适合自己的工具。',
-                      file: 'posts/2026-04-15_003.md'
+                      file: 'posts/2026-04-15_004.md'
                   },
                   {
                       id: 'opencode-subscription-guide',
                       title: 'opencode订阅计划完全指南 —— 看懂go和zen两种计划，以及如何使用免费模型',
                       date: '2026年4月16日',
                       excerpt: '详细介绍opencode是什么工具，go和zen两种订阅计划各自的定位、权益和适用人群，以及如何免费使用opencode，帮你做出最适合自己的选择。',
-                      file: 'posts/2026-04-10_005.md'
+                      file: 'posts/2026-04-16_005.md'
+                  },
+                  {
+                      id: 'debug-optimize-skill',
+                      title: '如何调试和优化一个skill',
+                      date: '2026年4月21日',
+                      excerpt: '系统性地介绍调试和优化skill的方法和技巧，包括日志记录、性能优化、输入验证及监控告警等实用实践。',
+                      file: 'posts/2026-04-21_006.md'
                   }
-             ]
-        };
-
-         // App state
-         let currentPost = null;
-         let isDarkMode = localStorage.getItem('dark-mode') === 'true';
-
-         // Elements
-         const topBar = document.getElementById('top-bar');
-         const postLayout = document.getElementById('post-layout');
-         const tocSidebar = document.getElementById('toc-sidebar');
-         const tocMenu = document.getElementById('toc-menu');
-         const contentArea = document.getElementById('content-area');
-         const app = document.getElementById('app');
-         const homeWrapper = document.getElementById('home-wrapper');
-         const homeApp = document.getElementById('home-app');
-
-          // Theme toggle
-          function updateThemeUI() {
-              const moonIcon = document.querySelector('.theme-icon-moon');
-              const sunIcon = document.querySelector('.theme-icon-sun');
-
-              // In light mode: show moon icon (click to go dark)
-              // In dark mode: show sun icon (click to go light)
-              if (isDarkMode) {
-                  moonIcon.style.display = 'none';
-                  sunIcon.style.display = 'block';
-              } else {
-                  moonIcon.style.display = 'block';
-                  sunIcon.style.display = 'none';
-              }
-          }
-
-          function toggleTheme() {
-              isDarkMode = !isDarkMode;
-              document.body.classList.toggle('dark-mode', isDarkMode);
-              localStorage.setItem('dark-mode', isDarkMode);
-              updateThemeUI();
-          }
-
-          // Initialize theme
-          if (isDarkMode) {
-              document.body.classList.add('dark-mode');
-          }
-          updateThemeUI();
-
-         // Go back to home
-         function goBack() {
-             renderHome();
-         }
-
-          // Extract table of contents from markdown content
-          function extractToc(html) {
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = html;
-
-              const headings = tempDiv.querySelectorAll('h1, h2, h3');
-              let toc = [];
 
               headings.forEach((heading, index) => {
                   const id = `heading-${index}`;
