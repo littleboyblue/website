@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="280" rx="12" fill="url(#bg2)"/>
+  <text x="400" y="34" text-anchor="middle" fill="#f59e0b" font-size="15" font-family="sans-serif" font-weight="600">Claude 的"做梦"机制：Agent 空闲时的记忆再巩固</text>
+
+  <!-- Day mode: Active -->
+  <rect x="35" y="62" width="340" height="85" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+  <text x="205" y="88" text-anchor="middle" fill="#a5b4fc" font-size="13" font-weight="600">☀ 日间：主动交互</text>
+  <text x="205" y="110" text-anchor="middle" fill="#94a3b8" font-size="11">用户对话 → 生成新记忆 → 写入记忆文件</text>
+  <text x="205" y="132" text-anchor="middle" fill="#64748b" font-size="10">记忆持续累积，可能包含冗余和冲突信息</text>
+
+  <!-- Arrow from day to night -->
+  <path d="M375,105 Q395,105 395,105 Q415,105 425,105" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
+  <text x="400" y="96" text-anchor="middle" fill="#f59e0b" font-size="20">→</text>
+
+  <!-- Night mode: Dreaming -->
+  <rect x="425" y="62" width="340" height="85" rx="8" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="595" y="88" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">🌙 夜间：Dreaming（做梦）</text>
+  <text x="595" y="110" text-anchor="middle" fill="#94a3b8" font-size="11">Agent 空闲时自动执行：回顾记忆 → 冲突检测</text>
+  <text x="595" y="132" text-anchor="middle" fill="#94a3b8" font-size="11">→ 清理无效信息 → 压缩上下文 → 重建用户画像</text>
+
+  <!-- Bottom: 3 step detail -->
+  <rect x="55" y="175" width="210" height="48" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="160" y="196" text-anchor="middle" fill="#c4b5fd" font-size="12">🔍 冲突检测</text>
+  <text x="160" y="214" text-anchor="middle" fill="#64748b" font-size="10">查找矛盾信息，标记删除</text>
+
+  <rect x="295" y="175" width="210" height="48" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="400" y="196" text-anchor="middle" fill="#fcd34d" font-size="12">📦 压缩上下文</text>
+  <text x="400" y="214" text-anchor="middle" fill="#64748b" font-size="10">去除冗余，保留核心信息</text>
+
+  <rect x="535" y="175" width="210" height="48" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="640" y="196" text-anchor="middle" fill="#67e8f9" font-size="12">👤 重建用户画像</text>
+  <text x="640" y="214" text-anchor="middle" fill="#64748b" font-size="10">更新价值观 · 偏好 · 过去经历</text>
+
+  <!-- Bottom label -->
+  <text x="400" y="262" text-anchor="middle" fill="#475569" font-size="11">类比人类睡眠中的记忆再巩固过程——让 Agent 的判断始终基于最新、最准确的用户上下文</text>
+</svg>
