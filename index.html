@@ -4,6 +4,7 @@
     <title>思考空间 - 探索 AI 与技术</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'self';">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/npm/harmonyos-sans/HarmonyOS-Sans.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
@@ -843,8 +844,12 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js?v=1"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"
+            integrity="sha384-zbcZAIxlvJtNE3Dp5nxLXdXtXyxwOdnILY1TDPVmKFhl4r4nSUG1r8bcFXGVa4Te" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+            integrity="sha384-F/bZzf7p3Joyp5psL90p/p89AZJsndkSoGwRpXcZhleCWhd8SnRuoYo4d0yirjJp" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js"
+            integrity="sha384-eEu5CTj3qGvu9PdJuS+YlkNi7d2XxQROAFYOr59zgObtlcux1ae1Il3u7jvdCSWu" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
         // Configure marked
@@ -1118,7 +1123,7 @@
 
         function extractToc(html) {
             const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
+            tempDiv.innerHTML = DOMPurify.sanitize(html);
             const headings = tempDiv.querySelectorAll('h1, h2, h3');
             const toc = [];
 
@@ -1207,7 +1212,7 @@
             getPostsSortedByIdDesc().forEach((post) => {
                 html += `
                     <li class="blog-item">
-                        <a href="#" onclick="loadPost('${post.id}'); return false;">
+                        <a href="#${post.id}" class="post-link" data-post-id="${post.id}">
                             <h3>${post.title}</h3>
                             <div class="blog-meta">${post.date}</div>
                             <p class="blog-excerpt">${post.excerpt}</p>
@@ -1239,11 +1244,12 @@
                     const html = marked.parse(content);
                     const result = extractToc(html);
 
-                    app.innerHTML = `
+                    const safeHtml = DOMPurify.sanitize(`
                         <div class="markdown-content">
                             ${result.html}
                         </div>
-                    `;
+                    `);
+                    app.innerHTML = safeHtml;
 
                     renderToc(result.toc);
                     setupScrollSpy();
@@ -1258,7 +1264,10 @@
                     });
                 })
                 .catch((error) => {
-                    app.innerHTML = `<p>Error loading post: ${error.message}</p>`;
+                    const p = document.createElement('p');
+                    p.textContent = `Error loading post: ${error.message}`;
+                    app.innerHTML = '';
+                    app.appendChild(p);
                 });
         }
 
@@ -1277,6 +1286,14 @@
 
         document.getElementById('year').textContent = new Date().getFullYear();
         window.addEventListener('hashchange', handleHashChange);
+
+        homeApp.addEventListener('click', (e) => {
+            const link = e.target.closest('.post-link');
+            if (link) {
+                e.preventDefault();
+                loadPost(link.dataset.postId);
+            }
+        });
 
         // Set icon state immediately
         updateThemeUI();
