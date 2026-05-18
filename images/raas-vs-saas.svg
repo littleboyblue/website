@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="none">
+  <rect width="800" height="300" rx="12" fill="#0f0f1a"/>
+  <text x="400" y="36" text-anchor="middle" fill="#ec4899" font-size="16" font-family="sans-serif" font-weight="600">SaaS vs RaaS：商业模式对比</text>
+
+  <!-- SaaS box -->
+  <rect x="40" y="55" width="345" height="155" rx="10" fill="#180829" stroke="#475569" stroke-width="1"/>
+  <text x="212" y="82" text-anchor="middle" fill="#94a3b8" font-size="14" font-weight="600">传统 SaaS</text>
+  <line x1="60" y1="93" x2="365" y2="93" stroke="#334155" stroke-width="0.5"/>
+
+  <text x="60" y="118" fill="#64748b" font-size="12">• 按席位 / 功能 / 用量付费</text>
+  <text x="60" y="140" fill="#64748b" font-size="12">• 软件能力相对稳定</text>
+  <text x="60" y="162" fill="#64748b" font-size="12">• 使用方式可标准化</text>
+  <text x="60" y="184" fill="#64748b" font-size="12">• 客户关心：价格 · 学习成本 · 效果</text>
+
+  <!-- Arrow -->
+  <text x="398" y="138" text-anchor="middle" fill="#ec4899" font-size="24">→</text>
+
+  <!-- RaaS box -->
+  <rect x="415" y="55" width="345" height="155" rx="10" fill="#2e0a36" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="587" y="82" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="600">RaaS (Results as a Service)</text>
+  <line x1="435" y1="93" x2="740" y2="93" stroke="#ec4899" stroke-width="0.5"/>
+
+  <text x="435" y="118" fill="#c084fc" font-size="12">• 按结果付费</text>
+  <text x="435" y="140" fill="#c084fc" font-size="12">• 服务方理解业务目标</text>
+  <text x="435" y="162" fill="#c084fc" font-size="12">• 进入客户指标体系</text>
+  <text x="435" y="184" fill="#c084fc" font-size="12">• 数据反馈 · 模型优化 · 续费闭环一体</text>
+
+  <!-- Bottom -->
+  <text x="400" y="270" text-anchor="middle" fill="#64748b" font-size="13">SaaS 卖软件能力 → RaaS 卖商业结果，后者壁垒更深但交付更重</text>
+</svg>
