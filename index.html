@@ -34,30 +34,32 @@
               color: #e0e0e0;
           }
 
-         #bg-video {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             object-fit: cover;
-             z-index: -2;
-         }
+#bg-wallpaper {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              z-index: -2;
+          }
 
-         #bg-overlay {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background: rgba(20, 30, 50, 0.45);
-             z-index: -1;
-             transition: background-color 0.3s;
-         }
+          #bg-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(20, 30, 50, 0.45);
+              z-index: -1;
+              transition: background-color 0.3s;
+          }
 
-         body.dark-mode #bg-overlay {
-             background: rgba(10, 15, 25, 0.85);
-         }
+          body.dark-mode #bg-overlay {
+              background: rgba(10, 15, 25, 0.85);
+          }
 
           /* Top Navigation Bar */
           #top-bar {
@@ -775,9 +777,7 @@
     </style>
 </head>
 <body>
-    <video id="bg-video" autoplay muted loop playsinline>
-        <source src="/videos/background.mp4" type="video/mp4">
-    </video>
+    <div id="bg-wallpaper"></div>
     <div id="bg-overlay"></div>
 
     <!-- Top Navigation Bar -->
@@ -1115,9 +1115,16 @@
         const tocMenu = document.getElementById('toc-menu');
         const moonIcon = document.querySelector('.theme-icon-moon');
         const sunIcon = document.querySelector('.theme-icon-sun');
+        const bgWallpaper = document.getElementById('bg-wallpaper');
 
         let currentPost = null;
         let isDarkMode = localStorage.getItem('dark-mode') === 'true';
+
+        function loadWallpaper() {
+            bgWallpaper.style.backgroundImage = "url('/images/bing-daily.jpg')";
+        }
+
+        loadWallpaper();
 
         function updateThemeUI() {
             if (isDarkMode) {
@@ -1221,7 +1228,7 @@
             document.getElementById('main').style.display = 'block';
             document.getElementById('footer').style.display = 'block';
 
-            // Home always keeps light theme for readability with background video
+            // Home always keeps light theme for readability with background wallpaper
             document.body.classList.remove('dark-mode');
 
             let html = `

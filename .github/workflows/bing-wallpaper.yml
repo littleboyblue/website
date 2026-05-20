@@ -1,0 +1,53 @@
+name: Update Bing Daily Wallpaper
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-wallpaper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Bing wallpaper URL
+        id: bing
+        run: |
+          RESPONSE=$(curl -s "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
+          IMAGE_URL="https://www.bing.com$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['images'][0]['url'])")"
+          echo "url=$IMAGE_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Download wallpaper
+        run: |
+          curl -sL -o images/bing-daily.jpg "${{ steps.bing.outputs.url }}"
+
+      - name: Check for changes
+        id: verify
+        run: |
+          if [ ! -f images/bing-daily.jpg ]; then
+            echo "Download failed"
+            exit 1
+          fi
+          FILESIZE=$(stat -c%s images/bing-daily.jpg 2>/dev/null || stat -f%z images/bing-daily.jpg)
+          if [ "$FILESIZE" -lt 10000 ]; then
+            echo "File too small ($FILESIZE bytes), likely not a valid image"
+            exit 1
+          fi
+          echo "File size: $FILESIZE bytes - OK"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f images/bing-daily.jpg
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update daily bing wallpaper"
+            git push
+          fi
