@@ -4,7 +4,7 @@
     <title>思考空间 - 探索 AI 与技术</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/npm/harmonyos-sans/HarmonyOS-Sans.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
@@ -853,15 +853,17 @@
 
     <script type="text/javascript">
         // Configure marked
-        marked.setOptions({
-            highlight: (code, lang) => {
-                if (lang && hljs.getLanguage(lang)) {
-                    return hljs.highlight(code, { language: lang }).value;
-                }
-                return hljs.highlightAuto(code).value;
-            },
+        marked.use({
             breaks: true,
-            gfm: true
+            gfm: true,
+            renderer: {
+                code({ text, lang }) {
+                    if (lang && hljs.getLanguage(lang)) {
+                        return `<pre><code class="hljs language-${lang}">${hljs.highlight(text, { language: lang }).value}</code></pre>`;
+                    }
+                    return `<pre><code class="hljs">${hljs.highlightAuto(text).value}</code></pre>`;
+                }
+            }
         });
 
         // Blog configuration
@@ -1144,7 +1146,7 @@
 
         function extractToc(html) {
             const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = DOMPurify.sanitize(html);
+            tempDiv.innerHTML = html;
             const headings = tempDiv.querySelectorAll('h1, h2, h3');
             const toc = [];
 
@@ -1243,7 +1245,7 @@
             });
 
             html += '</ul></section>';
-            homeApp.innerHTML = html;
+            homeApp.innerHTML = DOMPurify.sanitize(html);
             currentPost = null;
         }
 
@@ -1279,10 +1281,6 @@
                     window.location.hash = `#${postId}`;
 
                     applyTheme();
-
-                    document.querySelectorAll('pre code').forEach((block) => {
-                        hljs.highlightElement(block);
-                    });
                 })
                 .catch((error) => {
                     const p = document.createElement('p');
@@ -1294,7 +1292,7 @@
 
         function handleHashChange() {
             const hash = window.location.hash.slice(1);
-            if (hash) {
+            if (hash && /^post-\d{1,4}$/.test(hash)) {
                 loadPost(hash);
             } else {
                 renderHome();
