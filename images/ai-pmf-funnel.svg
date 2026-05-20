@@ -1,51 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="320" rx="12" fill="url(#bg)"/>
-  <text x="400" y="34" text-anchor="middle" fill="#a78bfa" font-size="15" font-family="sans-serif" font-weight="600">AI 产品的 PMF 漏斗：技术能力 ≠ 用户价值 ≠ 商业回报</text>
+  <rect width="800" height="400" rx="12" fill="url(#bg)"/>
+  <text x="400" y="38" text-anchor="middle" fill="#a78bfa" font-size="15" font-family="sans-serif" font-weight="600">AI 产品的 PMF 漏斗：技术能力 ≠ 用户价值 ≠ 商业回报</text>
 
   <!-- Layer 1: 技术能力 -->
-  <path d="M120,65 L680,65 L620,130 L180,130 Z" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="400" y="88" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="600">技术能力层（最宽）</text>
-  <text x="400" y="108" text-anchor="middle" fill="#94a3b8" font-size="11">模型参数 · 生成质量 · 代码能力 · 多模态支持</text>
-  <text x="400" y="124" text-anchor="middle" fill="#818cf8" font-size="10">→ 最容易炫技，最容易自嗨</text>
+  <path d="M120,70 L680,70 L620,150 L180,150 Z" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="95" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="600">技术能力层（最宽）</text>
+  <text x="400" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">模型参数 · 生成质量 · 代码能力 · 多模态支持</text>
+  <text x="400" y="137" text-anchor="middle" fill="#818cf8" font-size="10">→ 最容易炫技，最容易自嗨</text>
 
   <!-- Arrow down -->
-  <line x1="400" y1="135" x2="400" y2="148" stroke="#475569" stroke-width="1.5"/>
-  <polygon points="400,155 395,145 405,145" fill="#475569"/>
+  <line x1="400" y1="155" x2="400" y2="172" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="400,178 395,170 405,170" fill="#475569"/>
 
   <!-- Layer 2: 用户价值 -->
-  <path d="M180,155 L620,155 L560,220 L240,220 Z" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5"/>
-  <text x="400" y="178" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">用户价值层（收缩）</text>
-  <text x="400" y="198" text-anchor="middle" fill="#94a3b8" font-size="11">是否改变了用户行为？是否替代了原有工作流？</text>
-  <text x="400" y="214" text-anchor="middle" fill="#f59e0b" font-size="10">→ 真正的 PMF 发生在这里</text>
+  <path d="M180,185 L620,185 L560,265 L240,265 Z" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="400" y="210" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">用户价值层（收缩）</text>
+  <text x="400" y="232" text-anchor="middle" fill="#94a3b8" font-size="11">是否改变了用户行为？是否替代了原有工作流？</text>
+  <text x="400" y="255" text-anchor="middle" fill="#f59e0b" font-size="10">→ 真正的 PMF 发生在这里</text>
 
   <!-- Arrow down -->
-  <line x1="400" y1="225" x2="400" y2="238" stroke="#475569" stroke-width="1.5"/>
-  <polygon points="400,245 395,235 405,235" fill="#475569"/>
+  <line x1="400" y1="270" x2="400" y2="287" stroke="#475569" stroke-width="1.5"/>
+  <polygon points="400,293 395,285 405,285" fill="#475569"/>
 
   <!-- Layer 3: 商业回报 -->
-  <path d="M240,245 L560,245 L520,295 L280,295 Z" fill="#042f2e" stroke="#2dd4bf" stroke-width="1.5"/>
-  <text x="400" y="265" text-anchor="middle" fill="#99f6e4" font-size="13" font-weight="600">商业回报层（最窄）</text>
-  <text x="400" y="285" text-anchor="middle" fill="#5eead4" font-size="11">付费意愿 · 留存率 · 自然增长 · LTV/CAC &gt; 3</text>
+  <path d="M240,300 L560,300 L520,365 L280,365 Z" fill="#042f2e" stroke="#2dd4bf" stroke-width="1.5"/>
+  <text x="400" y="322" text-anchor="middle" fill="#99f6e4" font-size="13" font-weight="600">商业回报层（最窄）</text>
+  <text x="400" y="345" text-anchor="middle" fill="#5eead4" font-size="11">付费意愿 · 留存率 · 自然增长 · LTV/CAC &gt; 3</text>
 
   <!-- Three leak points -->
-  <text x="130" y="160" fill="#ef4444" font-size="11">⚠ 流失点 1</text>
-  <text x="130" y="175" fill="#64748b" font-size="10">Demo 好看</text>
-  <text x="130" y="188" fill="#64748b" font-size="10">但没人用</text>
+  <text x="75" y="190" fill="#ef4444" font-size="11">⚠ 流失点 1</text>
+  <text x="75" y="207" fill="#64748b" font-size="10">Demo 好看</text>
+  <text x="75" y="222" fill="#64748b" font-size="10">但没人用</text>
 
-  <text x="660" y="160" fill="#ef4444" font-size="11">⚠ 流失点 2</text>
-  <text x="660" y="175" fill="#64748b" font-size="10">有人用但</text>
-  <text x="660" y="188" fill="#64748b" font-size="10">不付费</text>
+  <text x="670" y="190" fill="#ef4444" font-size="11">⚠ 流失点 2</text>
+  <text x="670" y="207" fill="#64748b" font-size="10">有人用但</text>
+  <text x="670" y="222" fill="#64748b" font-size="10">不付费</text>
 
-  <text x="660" y="260" fill="#ef4444" font-size="11">⚠ 流失点 3</text>
-  <text x="660" y="275" fill="#64748b" font-size="10">付费但</text>
-  <text x="660" y="288" fill="#64748b" font-size="10">不增长</text>
+  <text x="670" y="305" fill="#ef4444" font-size="11">⚠ 流失点 3</text>
+  <text x="670" y="322" fill="#64748b" font-size="10">付费但</text>
+  <text x="670" y="337" fill="#64748b" font-size="10">不增长</text>
 
   <!-- Bottom note -->
-  <text x="400" y="315" text-anchor="middle" fill="#475569" font-size="11">GPT-3 API 停留在第一层 → ChatGPT 穿透到第三层</text>
+  <text x="400" y="392" text-anchor="middle" fill="#475569" font-size="11">GPT-3 API 停留在第一层 → ChatGPT 穿透到第三层</text>
 </svg>

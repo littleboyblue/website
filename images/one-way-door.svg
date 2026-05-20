@@ -1,40 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" fill="none">
   <defs>
     <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="300" rx="12" fill="url(#bg3)"/>
-  <text x="400" y="34" text-anchor="middle" fill="#22d3ee" font-size="15" font-family="sans-serif" font-weight="600">"单向门"决策框架：精力分配应以不可逆程度为准</text>
+  <rect width="800" height="320" rx="12" fill="url(#bg3)"/>
+  <text x="400" y="38" text-anchor="middle" fill="#22d3ee" font-size="15" font-family="sans-serif" font-weight="600">"单向门"决策框架：精力分配应以不可逆程度为准</text>
 
   <!-- Left: One-way door -->
-  <rect x="35" y="60" width="350" height="140" rx="10" fill="#2e0a36" stroke="#ec4899" stroke-width="2"/>
+  <rect x="35" y="60" width="350" height="160" rx="10" fill="#2e0a36" stroke="#ec4899" stroke-width="2"/>
   <text x="210" y="90" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="600">🚪 单向门 · One-Way Door</text>
   <text x="210" y="112" text-anchor="middle" fill="#c084fc" font-size="11">不可逆 · 高成本 · 一旦做错很难回头</text>
-  <line x1="55" y1="122" x2="365" y2="122" stroke="#ec4899" stroke-width="0.5" opacity="0.4"/>
-  <text x="55" y="146" fill="#94a3b8" font-size="11">• 模型架构选择（训练前决定，周期长达数月）</text>
-  <text x="55" y="166" fill="#94a3b8" font-size="11">• 重大基础设施投入（物理采购、算力投资）</text>
-  <text x="55" y="186" fill="#94a3b8" font-size="11">• 影响长期产品路径的战略决策</text>
-  <text x="55" y="195" fill="#ec4899" font-size="10">⏳ 值得投入最多思考</text>
+  <line x1="55" y1="124" x2="365" y2="124" stroke="#ec4899" stroke-width="0.5" opacity="0.4"/>
+  <text x="55" y="150" fill="#94a3b8" font-size="11">• 模型架构选择（训练前决定，周期长达数月）</text>
+  <text x="55" y="172" fill="#94a3b8" font-size="11">• 重大基础设施投入（物理采购、算力投资）</text>
+  <text x="55" y="194" fill="#94a3b8" font-size="11">• 影响长期产品路径的战略决策</text>
+  <text x="55" y="214" fill="#ec4899" font-size="10">⏳ 值得投入最多思考</text>
 
   <!-- Divider -->
   <line x1="395" y1="80" x2="395" y2="220" stroke="#334155" stroke-width="0.5"/>
 
   <!-- Right: Two-way door -->
-  <rect x="415" y="60" width="350" height="140" rx="10" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
+  <rect x="415" y="60" width="350" height="160" rx="10" fill="#042f2e" stroke="#2dd4bf" stroke-width="1"/>
   <text x="590" y="90" text-anchor="middle" fill="#99f6e4" font-size="14" font-weight="600">🚶 双向门 · Two-Way Door</text>
   <text x="590" y="112" text-anchor="middle" fill="#5eead4" font-size="11">可撤销 · 低成本 · 随时迭代修正</text>
-  <line x1="435" y1="122" x2="745" y2="122" stroke="#2dd4bf" stroke-width="0.5" opacity="0.4"/>
-  <text x="435" y="146" fill="#94a3b8" font-size="11">• 新功能迭代：写代码 → 给用户 → 收反馈 → 再迭代</text>
-  <text x="435" y="166" fill="#94a3b8" font-size="11">• UI/UX 调整</text>
-  <text x="435" y="186" fill="#94a3b8" font-size="11">• 内部工具改进</text>
-  <text x="435" y="195" fill="#2dd4bf" font-size="10">⚡ AI 时代近乎免费</text>
+  <line x1="435" y1="124" x2="745" y2="124" stroke="#2dd4bf" stroke-width="0.5" opacity="0.4"/>
+  <text x="435" y="150" fill="#94a3b8" font-size="11">• 新功能迭代：写代码 → 给用户 → 收反馈 → 再迭代</text>
+  <text x="435" y="172" fill="#94a3b8" font-size="11">• UI/UX 调整</text>
+  <text x="435" y="194" fill="#94a3b8" font-size="11">• 内部工具改进</text>
+  <text x="435" y="214" fill="#2dd4bf" font-size="10">⚡ AI 时代近乎免费</text>
 
   <!-- Bottom -->
-  <text x="400" y="230" text-anchor="middle" fill="#64748b" font-size="12">关键原则：多数产品决策是双向门，无需过度分析；真正的"单向门"才值得集中火力</text>
+  <text x="400" y="248" text-anchor="middle" fill="#64748b" font-size="12">关键原则：多数产品决策是双向门，无需过度分析；真正的"单向门"才值得集中火力</text>
 
   <!-- AI acceleration note -->
-  <rect x="180" y="248" width="440" height="36" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
-  <text x="400" y="271" text-anchor="middle" fill="#818cf8" font-size="12">AI 时代的关键变化：PM 能直接让 Claude 判断"重构系统"还是"改 10 行代码"——优先级排序快了很多</text>
+  <rect x="180" y="264" width="440" height="40" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="400" y="289" text-anchor="middle" fill="#818cf8" font-size="12">AI 时代的关键变化：PM 能直接让 Claude 判断"重构系统"还是"改 10 行代码"——优先级排序快了很多</text>
 </svg>

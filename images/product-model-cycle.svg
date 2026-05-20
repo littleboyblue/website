@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="none">
   <defs>
     <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f0f1a"/>
@@ -8,47 +8,47 @@
       <path d="M0,0 L8,3 L0,6 Z" fill="#6366f1"/>
     </marker>
   </defs>
-  <rect width="800" height="280" rx="12" fill="url(#bg1)"/>
-  <text x="400" y="32" text-anchor="middle" fill="#a78bfa" font-size="15" font-family="sans-serif" font-weight="600">Anthropic 的模型开发流水线：像做产品一样"培育"模型</text>
+  <rect width="800" height="300" rx="12" fill="url(#bg1)"/>
+  <text x="400" y="35" text-anchor="middle" fill="#a78bfa" font-size="15" font-family="sans-serif" font-weight="600">Anthropic 的模型开发流水线：像做产品一样"培育"模型</text>
 
   <!-- Phase 1: 规格定义 -->
-  <rect x="40" y="60" width="155" height="95" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1"/>
-  <text x="117" y="88" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="600">① 规格定义</text>
-  <text x="117" y="108" text-anchor="middle" fill="#64748b" font-size="10">目标能力 · 修复清单</text>
-  <text x="117" y="124" text-anchor="middle" fill="#64748b" font-size="10">评测路线 · 客户反馈</text>
-  <text x="117" y="142" text-anchor="middle" fill="#818cf8" font-size="10">PM 全程跟踪</text>
+  <rect x="30" y="60" width="155" height="105" rx="8" fill="#1e1b4b" stroke="#a78bfa" stroke-width="1"/>
+  <text x="107" y="85" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="600">① 规格定义</text>
+  <text x="107" y="105" text-anchor="middle" fill="#64748b" font-size="10">目标能力 · 修复清单</text>
+  <text x="107" y="121" text-anchor="middle" fill="#64748b" font-size="10">评测路线 · 客户反馈</text>
+  <text x="107" y="141" text-anchor="middle" fill="#818cf8" font-size="10">PM 全程跟踪</text>
 
-  <line x1="195" y1="107" x2="235" y2="107" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
+  <line x1="185" y1="112" x2="225" y2="112" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
 
   <!-- Phase 2: 训练 -->
-  <rect x="242" y="60" width="155" height="95" rx="8" fill="#1c1917" stroke="#f59e0b" stroke-width="1"/>
-  <text x="319" y="88" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">② 训练推进</text>
-  <text x="319" y="108" text-anchor="middle" fill="#64748b" font-size="10">预训练 · 强化学习</text>
-  <text x="319" y="124" text-anchor="middle" fill="#64748b" font-size="10">架构选择（单向门）</text>
-  <text x="319" y="142" text-anchor="middle" fill="#f59e0b" font-size="10">数月周期</text>
+  <rect x="232" y="60" width="155" height="105" rx="8" fill="#1c1917" stroke="#f59e0b" stroke-width="1"/>
+  <text x="309" y="85" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="600">② 训练推进</text>
+  <text x="309" y="105" text-anchor="middle" fill="#64748b" font-size="10">预训练 · 强化学习</text>
+  <text x="309" y="121" text-anchor="middle" fill="#64748b" font-size="10">架构选择（单向门）</text>
+  <text x="309" y="141" text-anchor="middle" fill="#f59e0b" font-size="10">数月周期</text>
 
-  <line x1="397" y1="107" x2="437" y2="107" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
+  <line x1="387" y1="112" x2="427" y2="112" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
 
   <!-- Phase 3: 评测 -->
-  <rect x="444" y="60" width="155" height="95" rx="8" fill="#1e1b4b" stroke="#22d3ee" stroke-width="1"/>
-  <text x="521" y="88" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="600">③ 评测验证</text>
-  <text x="521" y="108" text-anchor="middle" fill="#64748b" font-size="10">Eval 体系 · 合成数据</text>
-  <text x="521" y="124" text-anchor="middle" fill="#64748b" font-size="10">用户任务分布</text>
-  <text x="521" y="142" text-anchor="middle" fill="#22d3ee" font-size="10">量化 + 直觉判断</text>
+  <rect x="434" y="60" width="155" height="105" rx="8" fill="#1e1b4b" stroke="#22d3ee" stroke-width="1"/>
+  <text x="511" y="85" text-anchor="middle" fill="#67e8f9" font-size="13" font-weight="600">③ 评测验证</text>
+  <text x="511" y="105" text-anchor="middle" fill="#64748b" font-size="10">Eval 体系 · 合成数据</text>
+  <text x="511" y="121" text-anchor="middle" fill="#64748b" font-size="10">用户任务分布</text>
+  <text x="511" y="141" text-anchor="middle" fill="#22d3ee" font-size="10">量化 + 直觉判断</text>
 
-  <line x1="599" y1="107" x2="639" y2="107" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
+  <line x1="589" y1="112" x2="629" y2="112" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arr1)"/>
 
   <!-- Phase 4: 发布 -->
-  <rect x="646" y="60" width="114" height="95" rx="8" fill="#042f2e" stroke="#2dd4bf" stroke-width="1.5"/>
-  <text x="703" y="88" text-anchor="middle" fill="#99f6e4" font-size="13" font-weight="600">④ 发布</text>
-  <text x="703" y="108" text-anchor="middle" fill="#64748b" font-size="10">API / Code</text>
-  <text x="703" y="124" text-anchor="middle" fill="#64748b" font-size="10">Cowork / Web</text>
-  <text x="703" y="142" text-anchor="middle" fill="#2dd4bf" font-size="10">多渠道触达</text>
+  <rect x="636" y="60" width="130" height="105" rx="8" fill="#042f2e" stroke="#2dd4bf" stroke-width="1.5"/>
+  <text x="701" y="85" text-anchor="middle" fill="#99f6e4" font-size="13" font-weight="600">④ 发布</text>
+  <text x="701" y="105" text-anchor="middle" fill="#64748b" font-size="10">API / Code</text>
+  <text x="701" y="121" text-anchor="middle" fill="#64748b" font-size="10">Cowork / Web</text>
+  <text x="701" y="141" text-anchor="middle" fill="#2dd4bf" font-size="10">多渠道触达</text>
 
   <!-- Feedback loop -->
-  <path d="M703,175 Q703,205 400,215 Q97,205 117,175" stroke="#ec4899" stroke-width="1.2" stroke-dasharray="6 3" fill="none" marker-end="url(#arr1)"/>
-  <text x="400" y="240" text-anchor="middle" fill="#ec4899" font-size="11">用户反馈循环：数百万用户每天提供真实使用数据，驱动下一轮规格定义 →</text>
+  <path d="M701,175 Q701,210 400,220 Q99,210 107,175" stroke="#ec4899" stroke-width="1.2" stroke-dasharray="6 3" fill="none" marker-end="url(#arr1)"/>
+  <text x="400" y="248" text-anchor="middle" fill="#ec4899" font-size="11">用户反馈循环：数百万用户每天提供真实使用数据，驱动下一轮规格定义 →</text>
 
   <!-- Bottom label -->
-  <text x="400" y="268" text-anchor="middle" fill="#475569" font-size="11">与普通软件不同：你"培育"模型——训练前并不能完全确定它最终会表现成什么样</text>
+  <text x="400" y="280" text-anchor="middle" fill="#475569" font-size="11">与普通软件不同：你"培育"模型——训练前并不能完全确定它最终会表现成什么样</text>
 </svg>
