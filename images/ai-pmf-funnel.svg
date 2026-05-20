@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" fill="none">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f0f1a"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
   </defs>
-  <rect width="800" height="400" rx="12" fill="url(#bg)"/>
+  <rect width="800" height="440" rx="12" fill="url(#bg)"/>
   <text x="400" y="38" text-anchor="middle" fill="#a78bfa" font-size="15" font-family="sans-serif" font-weight="600">AI 产品的 PMF 漏斗：技术能力 ≠ 用户价值 ≠ 商业回报</text>
 
   <!-- Layer 1: 技术能力 -->
@@ -33,19 +33,22 @@
   <text x="400" y="322" text-anchor="middle" fill="#99f6e4" font-size="13" font-weight="600">商业回报层（最窄）</text>
   <text x="400" y="345" text-anchor="middle" fill="#5eead4" font-size="11">付费意愿 · 留存率 · 自然增长 · LTV/CAC &gt; 3</text>
 
-  <!-- Three leak points -->
-  <text x="75" y="190" fill="#ef4444" font-size="11">⚠ 流失点 1</text>
-  <text x="75" y="207" fill="#64748b" font-size="10">Demo 好看</text>
-  <text x="75" y="222" fill="#64748b" font-size="10">但没人用</text>
+  <!-- Leak points — all on right side, aligned with gaps between layers -->
+  <!-- 流失点 1: between Layer 1 (y=150) and Layer 2 (y=185) -->
+  <text x="660" y="158" fill="#ef4444" font-size="11">⚠ 流失点 1</text>
+  <text x="660" y="175" fill="#64748b" font-size="10">Demo 好看</text>
+  <text x="660" y="190" fill="#64748b" font-size="10">但没人用</text>
 
-  <text x="670" y="190" fill="#ef4444" font-size="11">⚠ 流失点 2</text>
-  <text x="670" y="207" fill="#64748b" font-size="10">有人用但</text>
-  <text x="670" y="222" fill="#64748b" font-size="10">不付费</text>
+  <!-- 流失点 2: between Layer 2 (y=265) and Layer 3 (y=300) -->
+  <text x="660" y="273" fill="#ef4444" font-size="11">⚠ 流失点 2</text>
+  <text x="660" y="290" fill="#64748b" font-size="10">有人用但</text>
+  <text x="660" y="305" fill="#64748b" font-size="10">不付费</text>
 
-  <text x="670" y="305" fill="#ef4444" font-size="11">⚠ 流失点 3</text>
-  <text x="670" y="322" fill="#64748b" font-size="10">付费但</text>
-  <text x="670" y="337" fill="#64748b" font-size="10">不增长</text>
+  <!-- 流失点 3: below Layer 3 (y=365) -->
+  <text x="660" y="375" fill="#ef4444" font-size="11">⚠ 流失点 3</text>
+  <text x="660" y="390" fill="#64748b" font-size="10">付费但</text>
+  <text x="660" y="405" fill="#64748b" font-size="10">不增长</text>
 
   <!-- Bottom note -->
-  <text x="400" y="392" text-anchor="middle" fill="#475569" font-size="11">GPT-3 API 停留在第一层 → ChatGPT 穿透到第三层</text>
+  <text x="400" y="432" text-anchor="middle" fill="#475569" font-size="11">GPT-3 API 停留在第一层 → ChatGPT 穿透到第三层</text>
 </svg>
