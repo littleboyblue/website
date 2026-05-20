@@ -1121,7 +1121,14 @@
         let isDarkMode = localStorage.getItem('dark-mode') === 'true';
 
         function loadWallpaper() {
-            bgWallpaper.style.backgroundImage = "url('/images/bing-daily.jpg')";
+            const img = new Image();
+            img.onload = function () {
+                bgWallpaper.style.backgroundImage = "url('/images/bing-daily.jpg')";
+            };
+            img.onerror = function () {
+                bgWallpaper.style.backgroundImage = 'linear-gradient(135deg, #0f2027, #203a43, #2c5364)';
+            };
+            img.src = '/images/bing-daily.jpg';
         }
 
         loadWallpaper();
