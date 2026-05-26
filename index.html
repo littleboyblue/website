@@ -435,24 +435,17 @@
             line-height: 1.6;
         }
 
-        .blog-stats strong {
-            color: #49bf9d;
-        }
-
-        .blog-nav {
-            margin-top: 12px;
-            display: flex;
-            gap: 16px;
-        }
-
-        .blog-nav a {
-            color: #999;
-            font-size: 0.9em;
+        .blog-stats a {
+            color: inherit;
             text-decoration: none;
             transition: color 0.2s;
         }
 
-        .blog-nav a:hover {
+        .blog-stats a:hover {
+            color: #49bf9d;
+        }
+
+        .blog-stats strong {
             color: #49bf9d;
         }
 
@@ -507,7 +500,7 @@
             margin-bottom: 30px;
         }
 
-        .archive-year {
+        .archive-month {
             display: inline-block;
             background: #49bf9d;
             color: #fff;
@@ -994,10 +987,6 @@
                 <p>探索 AI 与技术的深度思考<br>
                 记录学习与成长</p>
                 <div class="blog-stats" id="blog-stats"></div>
-                <nav class="blog-nav">
-                    <a href="#categories">分类</a>
-                    <a href="#archives">归档</a>
-                </nav>
             </header>
 
             <div id="main">
@@ -1369,16 +1358,21 @@
         }
 
         function getArchives() {
-            const yearMap = {};
+            const monthMap = {};
             getPostsSortedByIdDesc().forEach((p) => {
-                const match = p.date.match(/(\d{4})/);
+                const match = p.date.match(/(\d{4})年(\d{1,2})月/);
                 if (match) {
-                    const year = match[1];
-                    if (!yearMap[year]) yearMap[year] = [];
-                    yearMap[year].push(p);
+                    const key = `${match[1]}年${match[2]}月`;
+                    if (!monthMap[key]) monthMap[key] = [];
+                    monthMap[key].push(p);
                 }
             });
-            return Object.entries(yearMap).sort((a, b) => Number(b[0]) - Number(a[0]));
+            return Object.entries(monthMap).sort((a, b) => {
+                const ma = a[0].match(/(\d{4})年(\d{1,2})月/);
+                const mb = b[0].match(/(\d{4})年(\d{1,2})月/);
+                if (ma[1] !== mb[1]) return Number(mb[1]) - Number(ma[1]);
+                return Number(mb[2]) - Number(ma[2]);
+            });
         }
 
         function showHomeLayout() {
@@ -1582,9 +1576,9 @@
                     </header>
             `;
 
-            archives.forEach(([year, posts]) => {
+            archives.forEach(([month, posts]) => {
                 html += `<div class="archive-group">`;
-                html += `<h3 class="archive-year">${year}</h3>`;
+                html += `<h3 class="archive-month">${month}</h3>`;
                 html += `<ul class="archive-timeline">`;
                 posts.forEach((post) => {
                     html += `
@@ -1728,7 +1722,7 @@
             const categories = getCategories();
             const statsEl = document.getElementById('blog-stats');
             if (statsEl) {
-                statsEl.innerHTML = `文章 <strong>${blogConfig.posts.length}</strong> · 分类 <strong>${categories.length}</strong>`;
+                statsEl.innerHTML = `<a href="#archives">文章 <strong>${blogConfig.posts.length}</strong></a> · <a href="#categories">分类 <strong>${categories.length}</strong></a>`;
             }
         })();
 
