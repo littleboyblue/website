@@ -4,7 +4,7 @@
     <title>思考空间 - 探索 AI 与技术</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' data:; media-src 'self'; connect-src 'self' https://blog-stats.washi.lol; frame-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link href="https://cdn.jsdelivr.net/npm/harmonyos-sans/HarmonyOS-Sans.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
@@ -568,6 +568,98 @@
 
         .archive-back:hover {
             text-decoration: underline;
+        }
+
+        .stats-loading {
+            color: #999;
+            font-size: 1em;
+            padding: 20px 0;
+        }
+
+        .stats-total {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        .stats-total strong {
+            color: #49bf9d;
+            font-size: 1.3em;
+        }
+
+        .stats-section-title {
+            font-size: 1.1em;
+            color: #444;
+            margin: 20px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stats-rank {
+            list-style: none;
+        }
+
+        .stats-rank-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .stats-rank-title {
+            font-size: 0.95em;
+            color: #444;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 80%;
+        }
+
+        .stats-rank-count {
+            font-size: 0.85em;
+            color: #999;
+            background: #f5f5f5;
+            padding: 1px 8px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .stats-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 140px;
+            padding-top: 10px;
+            overflow-x: auto;
+        }
+
+        .stats-bar-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            min-width: 18px;
+        }
+
+        .stats-bar {
+            width: 100%;
+            background: #49bf9d;
+            border-radius: 2px 2px 0 0;
+            min-height: 2px;
+        }
+
+        .stats-bar-label {
+            font-size: 0.65em;
+            color: #aaa;
+            margin-top: 4px;
+            white-space: nowrap;
+        }
+
+        .stats-error {
+            color: #999;
+            font-size: 0.95em;
+            padding: 20px 0;
         }
 
         .blog-excerpt {
@@ -1335,6 +1427,21 @@
             ]
         };
 
+        const STATS_WORKER_URL = 'https://blog-stats.washi.lol';
+
+        function trackPageView(page) {
+            try {
+                const dedupeKey = 'pv_last:' + page;
+                const last = localStorage.getItem(dedupeKey);
+                if (last && Date.now() - Number(last) < 10000) return;
+                localStorage.setItem(dedupeKey, String(Date.now()));
+                navigator.sendBeacon(
+                    STATS_WORKER_URL + '/track',
+                    JSON.stringify({ page: page })
+                );
+            } catch (e) {}
+        }
+
         function getPostsSortedByIdDesc() {
             return [...blogConfig.posts].sort((a, b) => {
                 const aNum = Number(a.id.replace('post-', ''));
@@ -1535,6 +1642,7 @@
             html += '</ul></section>';
             homeApp.innerHTML = DOMPurify.sanitize(html);
             currentPost = null;
+            trackPageView('home');
         }
 
         function renderCategories() {
@@ -1628,6 +1736,76 @@
             currentPost = null;
         }
 
+        function renderStats() {
+            showHomeLayout();
+
+            homeApp.innerHTML = DOMPurify.sanitize(`
+                <section>
+                    <header class="major"><h2>访问统计</h2></header>
+                    <div class="stats-loading">加载中...</div>
+                </section>
+            `);
+
+            fetch(STATS_WORKER_URL + '/stats')
+                .then((r) => r.json())
+                .then((data) => {
+                    const sortedPosts = Object.entries(data.posts || {})
+                        .filter(([k]) => k.startsWith('post-'))
+                        .sort((a, b) => b[1] - a[1]);
+
+                    const postMap = {};
+                    blogConfig.posts.forEach((p) => { postMap[p.id] = p.title; });
+
+                    let postsHtml = '';
+                    sortedPosts.forEach(([id, count]) => {
+                        const title = postMap[id] || id;
+                        postsHtml += `
+                            <li class="stats-rank-item">
+                                <span class="stats-rank-title">${title}</span>
+                                <span class="stats-rank-count">${count}</span>
+                            </li>
+                        `;
+                    });
+
+                    const dailyEntries = Object.entries(data.daily || {}).sort((a, b) => a[0].localeCompare(b[0]));
+                    const recentDaily = dailyEntries.slice(-30);
+                    const maxDaily = Math.max(1, ...recentDaily.map(([, v]) => v));
+
+                    let chartHtml = '';
+                    recentDaily.forEach(([date, count]) => {
+                        const height = Math.max(2, (count / maxDaily) * 120);
+                        const label = date.slice(5);
+                        chartHtml += `
+                            <div class="stats-bar-col">
+                                <div class="stats-bar" style="height:${height}px" title="${date}: ${count} PV"></div>
+                                <span class="stats-bar-label">${label}</span>
+                            </div>
+                        `;
+                    });
+
+                    homeApp.innerHTML = DOMPurify.sanitize(`
+                        <section>
+                            <header class="major"><h2>访问统计</h2></header>
+                            <div class="stats-total">全站总 PV：<strong>${data.total || 0}</strong></div>
+                            <h3 class="stats-section-title">文章排行</h3>
+                            <ul class="stats-rank">${postsHtml}</ul>
+                            <h3 class="stats-section-title">近 30 天趋势</h3>
+                            <div class="stats-chart">${chartHtml}</div>
+                        </section>
+                    `);
+                })
+                .catch(() => {
+                    homeApp.innerHTML = DOMPurify.sanitize(`
+                        <section>
+                            <header class="major"><h2>访问统计</h2></header>
+                            <p class="stats-error">统计服务暂不可用，请确认 Worker 已部署且 STATS_WORKER_URL 配置正确。</p>
+                        </section>
+                    `);
+                });
+
+            currentPost = null;
+        }
+
         function loadPost(postId) {
             const post = blogConfig.posts.find((p) => p.id === postId);
             if (!post) return;
@@ -1660,6 +1838,7 @@
                     window.location.hash = `#${postId}`;
 
                     applyTheme();
+                    trackPageView(postId);
                 })
                 .catch((error) => {
                     const p = document.createElement('p');
@@ -1677,6 +1856,8 @@
                 renderCategories();
             } else if (hash === 'archives') {
                 renderArchives();
+            } else if (hash === 'stats') {
+                renderStats();
             } else if (hash.startsWith('category/')) {
                 const category = decodeURIComponent(hash.slice(9));
                 renderCategoryPage(category);
@@ -1723,6 +1904,26 @@
             const statsEl = document.getElementById('blog-stats');
             if (statsEl) {
                 statsEl.innerHTML = `<a href="#archives">文章 <strong>${blogConfig.posts.length}</strong></a> · <a href="#categories">分类 <strong>${categories.length}</strong></a>`;
+            }
+        })();
+
+        // Easter egg: click avatar 5 times within 3 seconds → #stats
+        (function () {
+            let clicks = 0;
+            let timer = null;
+            const avatar = document.querySelector('#header .avatar');
+            if (avatar) {
+                avatar.style.cursor = 'pointer';
+                avatar.addEventListener('click', () => {
+                    clicks++;
+                    clearTimeout(timer);
+                    timer = setTimeout(() => { clicks = 0; }, 3000);
+                    if (clicks >= 5) {
+                        clicks = 0;
+                        clearTimeout(timer);
+                        window.location.hash = '#stats';
+                    }
+                });
             }
         })();
 

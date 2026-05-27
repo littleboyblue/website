@@ -1,0 +1,10 @@
+name = "blog-stats"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "STATS"
+id = "77f4e25f0d4747f3a1751e889c9d78fe"
+
+[vars]
+ALLOWED_ORIGIN = "https://washi.lol"
