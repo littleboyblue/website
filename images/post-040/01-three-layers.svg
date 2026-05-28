@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="layer1Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="layer2Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="layer3Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowDown" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="440" rx="12" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" fill="#e2e8f0" font-size="17" font-weight="700" font-family="system-ui, sans-serif">AI 时代的三层显形运动</text>
+
+  <!-- Layer 1: Intent -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="64" width="680" height="96" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="60" y="64" width="132" height="96" rx="10" fill="url(#layer1Grad)"/>
+    <rect x="182" y="64" width="10" height="96" fill="url(#layer1Grad)"/>
+  </g>
+  <text x="126" y="106" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui, sans-serif">意图层</text>
+  <text x="126" y="126" text-anchor="middle" fill="#bfdbfe" font-size="10" font-family="system-ui, sans-serif">Intent</text>
+  <!-- Intent layer details -->
+  <text x="216" y="88" fill="#e2e8f0" font-size="13" font-weight="600" font-family="system-ui, sans-serif">"我想要什么"→ 被迫写成可执行文本</text>
+  <text x="216" y="110" fill="#94a3b8" font-size="11" font-family="system-ui, sans-serif">Spec-Driven Development · PRD as Code · Plan First</text>
+  <text x="216" y="130" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">ROI 逆转：写清楚意图第一次有确定的后果 · "说不清楚"→"必须说清楚"</text>
+  <text x="216" y="148" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">副作用：写下来才发现——很多事你从来没想清楚过</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="400" y1="160" x2="400" y2="186" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowDown)" opacity="0.5"/>
+
+  <!-- Layer 2: Execution -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="192" width="680" height="96" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="60" y="192" width="132" height="96" rx="10" fill="url(#layer2Grad)"/>
+    <rect x="182" y="192" width="10" height="96" fill="url(#layer2Grad)"/>
+  </g>
+  <text x="126" y="234" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui, sans-serif">执行层</text>
+  <text x="126" y="254" text-anchor="middle" fill="#fef3c7" font-size="10" font-family="system-ui, sans-serif">Execution</text>
+  <text x="216" y="216" fill="#e2e8f0" font-size="13" font-weight="600" font-family="system-ui, sans-serif">"该怎么做"→ 隐性知识被抄进系统</text>
+  <text x="216" y="238" fill="#94a3b8" font-size="11" font-family="system-ui, sans-serif">Polanyi 悖论破局：We know more than we can tell → 现在 can tell via Agent Workflow</text>
+  <text x="216" y="258" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">资深工程师七步工作法 → 可被 diff / review / rollback 的文本</text>
+  <text x="216" y="276" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">角色重塑：做事的→教练+评审员 · 一个 project.md 带一个业务线</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="400" y1="288" x2="400" y2="314" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowDown)" opacity="0.5"/>
+
+  <!-- Layer 3: Judgment -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="320" width="680" height="96" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+    <rect x="60" y="320" width="132" height="96" rx="10" fill="url(#layer3Grad)"/>
+    <rect x="182" y="320" width="10" height="96" fill="url(#layer3Grad)"/>
+  </g>
+  <text x="126" y="362" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui, sans-serif">判断层</text>
+  <text x="126" y="382" text-anchor="middle" fill="#fecaca" font-size="10" font-family="system-ui, sans-serif">Judgment</text>
+  <text x="216" y="344" fill="#e2e8f0" font-size="13" font-weight="600" font-family="system-ui, sans-serif">"做得好不好"→ 最深、最难、最危险的一层</text>
+  <text x="216" y="366" fill="#94a3b8" font-size="11" font-family="system-ui, sans-serif">AI 写代码速度 >> 人类 review 速度 → 必须把"什么叫好"显形</text>
+  <text x="216" y="386" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">Goodhart 定律：凡被度量的都会被扭曲 · 综合评价从数学上不可能</text>
+  <text x="216" y="404" fill="#ef4444" font-size="11" font-family="system-ui, sans-serif">⚠ "好"不能被外包——"合格"的定义必须由组织自己说出来</text>
+</svg>
