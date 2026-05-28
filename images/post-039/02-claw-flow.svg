@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="phoneGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="clawbotGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="desktopGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="resultGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#10b981"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="320" rx="12" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#e2e8f0" font-size="17" font-weight="700" font-family="system-ui, sans-serif">🦞 Claw 远程控制工作流程</text>
+  <text x="400" y="52" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="system-ui, sans-serif">无论身在何处，用手机一句话让电脑替你干活</text>
+
+  <!-- Flow connectors (background arrows) -->
+  <!-- Forward arrows (top) -->
+  <line x1="160" y1="110" x2="228" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowRight)" opacity="0.5"/>
+  <line x1="400" y1="110" x2="510" y2="110" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowRight)" opacity="0.5"/>
+  <line x1="700" y1="110" x2="770" y2="110" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowLeft)" opacity="0.5"/>
+
+  <!-- Label for forward flow -->
+  <text x="290" y="96" text-anchor="middle" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">发送指令</text>
+  <text x="458" y="96" text-anchor="middle" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">调度任务</text>
+
+  <!-- Return flow (bottom, from Desktop back to Phone) -->
+  <path d="M 640,160 Q 580,220 480,220 Q 350,220 230,160" stroke="#10b981" stroke-width="1" stroke-dasharray="6" fill="none" opacity="0.3"/>
+  <text x="420" y="245" text-anchor="middle" fill="#10b981" font-size="10" font-family="system-ui, sans-serif" opacity="0.6">结果回传</text>
+
+  <!-- Node 1: Mobile Phone -->
+  <g filter="url(#shadow)">
+    <rect x="34" y="80" width="126" height="64" rx="10" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
+    <rect x="34" y="80" width="126" height="22" rx="10" fill="url(#phoneGrad)"/>
+    <rect x="34" y="92" width="126" height="10" fill="url(#phoneGrad)"/>
+  </g>
+  <text x="97" y="98" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="system-ui, sans-serif">📱 手机</text>
+  <text x="97" y="127" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">一句话下任务</text>
+
+  <!-- Node 2: ClawBot -->
+  <g filter="url(#shadow)">
+    <rect x="238" y="80" width="162" height="64" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect x="238" y="80" width="162" height="22" rx="10" fill="url(#clawbotGrad)"/>
+    <rect x="238" y="92" width="162" height="10" fill="url(#clawbotGrad)"/>
+  </g>
+  <text x="319" y="98" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="system-ui, sans-serif">🦞 ClawBot 云端</text>
+  <text x="319" y="127" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">IM 消息 → 任务解析</text>
+
+  <!-- Node 3: WorkBuddy Desktop -->
+  <g filter="url(#shadow)">
+    <rect x="520" y="80" width="180" height="64" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+    <rect x="520" y="80" width="180" height="22" rx="10" fill="url(#desktopGrad)"/>
+    <rect x="520" y="92" width="180" height="10" fill="url(#desktopGrad)"/>
+  </g>
+  <text x="610" y="98" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="system-ui, sans-serif">💻 WorkBuddy 桌面</text>
+  <text x="610" y="127" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">执行任务 · 本地操作</text>
+
+  <!-- Node 4: Result -->
+  <g filter="url(#shadow)">
+    <rect x="410" y="160" width="100" height="54" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  </g>
+  <text x="460" y="183" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" font-family="system-ui, sans-serif">📄 产物</text>
+  <text x="460" y="202" text-anchor="middle" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">文档/PPT/数据</text>
+
+  <!-- Down arrow from desktop to result -->
+  <line x1="610" y1="145" x2="510" y2="160" stroke="#64748b" stroke-width="1" marker-end="url(#arrowRight)" opacity="0.4"/>
+
+  <!-- Platform icons row -->
+  <text x="400" y="285" text-anchor="middle" fill="#64748b" font-size="11" font-family="system-ui, sans-serif">支持平台</text>
+  <g transform="translate(0,298)">
+    <rect x="175" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="203" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">微信</text>
+    <rect x="243" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="271" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">企业微信</text>
+    <rect x="311" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="339" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">QQ</text>
+    <rect x="379" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="407" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">钉钉</text>
+    <rect x="447" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="475" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">飞书</text>
+    <rect x="515" y="-11" width="56" height="22" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="0.8"/>
+    <text x="543" y="4" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">元宝派</text>
+  </g>
+</svg>
