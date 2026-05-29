@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="400" rx="12" fill="url(#bg)"/>
+
+  <text x="400" y="36" text-anchor="middle" fill="#e2e8f0" font-size="17" font-weight="700" font-family="system-ui, sans-serif">OpenClaw 五层架构</text>
+
+  <!-- Layer 1: Reach -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="56" width="720" height="56" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="1.2"/>
+  </g>
+  <text x="80" y="80" fill="#a78bfa" font-size="13" font-weight="700" font-family="system-ui, sans-serif">触达层</text>
+  <text x="80" y="98" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">QQ / Discord / Telegram / 飞书 / WhatsApp / Slack / MS Teams / Signal</text>
+  <text x="680" y="90" text-anchor="end" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">Channel Plugin × 25+</text>
+
+  <!-- Layer 2: Orchestration -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="120" width="720" height="56" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+  </g>
+  <text x="80" y="144" fill="#06b6d4" font-size="13" font-weight="700" font-family="system-ui, sans-serif">编排层</text>
+  <text x="80" y="162" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">Gateway — 消息路由 · Agent 调度 · 安全控制 · 配置热加载 · 执行审批</text>
+  <text x="680" y="154" text-anchor="end" fill="#22d3ee" font-size="10" font-weight="600" font-family="system-ui, sans-serif">微内核中枢</text>
+
+  <!-- Layer 3: Capability -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="184" width="720" height="56" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.2"/>
+  </g>
+  <text x="80" y="208" fill="#ec4899" font-size="13" font-weight="700" font-family="system-ui, sans-serif">能力层</text>
+  <text x="80" y="226" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">Plugin SDK — 工具注册 · 模型适配 · Channel 契约 · 生命周期管理</text>
+  <text x="680" y="218" text-anchor="end" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">万物皆插件</text>
+
+  <!-- Layer 4: Memory -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="248" width="720" height="56" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+  </g>
+  <text x="80" y="272" fill="#10b981" font-size="13" font-weight="700" font-family="system-ui, sans-serif">记忆层</text>
+  <text x="80" y="290" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">向量引擎 · Dreaming 三阶段 · Active Recall · Compaction · 双层存储</text>
+  <text x="680" y="282" text-anchor="end" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">记忆驱动</text>
+
+  <!-- Layer 5: Model -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="312" width="720" height="56" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+  </g>
+  <text x="80" y="336" fill="#f59e0b" font-size="13" font-weight="700" font-family="system-ui, sans-serif">模型层</text>
+  <text x="80" y="354" fill="#94a3b8" font-size="10" font-family="system-ui, sans-serif">9 种 LLM API 协议 · Auth Profile 轮转 · Model Fallback 降级链 · CLI Backend</text>
+  <text x="680" y="346" text-anchor="end" fill="#64748b" font-size="10" font-family="system-ui, sans-serif">配置驱动</text>
+
+  <!-- Vertical flow arrow -->
+  <line x1="20" y1="70" x2="20" y2="350" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowR)" opacity="0.3"/>
+  <text x="16" y="220" text-anchor="middle" fill="#475569" font-size="9" font-family="system-ui, sans-serif" transform="rotate(-90, 16, 220)">请求流向</text>
+</svg>
