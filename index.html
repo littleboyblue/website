@@ -1106,11 +1106,11 @@
             breaks: true,
             gfm: true,
             renderer: {
-                code({ text, lang }) {
+                code(code, lang, escaped) {
                     if (lang && hljs.getLanguage(lang)) {
-                        return `<pre><code class="hljs language-${lang}">${hljs.highlight(text, { language: lang }).value}</code></pre>`;
+                        return `<pre><code class="hljs language-${lang}">${hljs.highlight(code, { language: lang }).value}</code></pre>`;
                     }
-                    return `<pre><code class="hljs">${hljs.highlightAuto(text).value}</code></pre>`;
+                    return `<pre><code class="hljs">${hljs.highlightAuto(code).value}</code></pre>`;
                 }
             }
         });
