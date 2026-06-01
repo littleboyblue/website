@@ -1,58 +1,43 @@
 # AGENTS.md
 
-Static HTML blog, vanilla JS, no build tools.
+Static HTML blog with all site CSS/JS in `index.html`; no package manager, build step, lint, or test config.
 
-## Dev Command
+## Commands
 
-```bash
-python -m http.server 8000
-```
+- Local site preview: `python -m http.server 8000`
+- Worker deployment is CI-driven on pushes to `main` touching `worker/**`; manual dispatch is also available in `.github/workflows/deploy-worker.yml`.
 
 ## Adding Posts
 
-1. Create `posts/<slug>.md`
-2. Add entry to `blogConfig.posts` array in `index.html`
-3. Set `id` using chronological numbering format `post-XXX` (e.g. `post-007`)
-4. Keep `blogConfig.posts` in ascending chronological order (oldest -> newest); home page display is handled by ID-desc sorting so newest appears first
-5. Keep the post file name format as `YYYY-MM-DD_NNN.md`
+1. Create `posts/YYYY-MM-DD_NNN.md`.
+2. Add the metadata object to `blogConfig.posts` in `index.html`.
+3. Use chronological IDs like `post-042`; keep `blogConfig.posts` oldest to newest.
+4. Home/category/archive views sort by numeric ID descending, so do not reorder newest-first manually.
+5. Put post assets under `images/post-XXX/` when possible and reference them from Markdown as `images/post-XXX/...`.
 
 ## Architecture
 
-- `index.html` - All CSS/JS inlined, single entry point
-- Hash routing (`#post-XXX`) with regex validation `/^post-\d{1,4}$/`
-- Markdown: `marked.js` + `highlight.js` for code blocks, rendered via custom `code` renderer in `marked.use()`
-- Post layout: left TOC sidebar (auto from h1/h2/h3), right content area
-- Home always uses light theme regardless of saved preference
-- Theme toggle persists to localStorage
-- Background: daily Bing wallpaper via GitHub Actions, with CSS gradient overlay (`#bg-wallpaper` + `#bg-overlay`)
+- `index.html` is the site entrypoint: routing, blog metadata, Markdown rendering, theme handling, stats UI, and all styles live inline.
+- Hash routes are handled in `handleHashChange()`: posts must match `/^post-\d{1,4}$/`; other known routes are `#categories`, `#archives`, `#category/<name>`, and hidden stats route `#stats`.
+- Markdown is fetched from `posts/*.md`, rendered with `marked`, highlighted with `highlight.js`, then sanitized with `DOMPurify` before insertion.
+- Post pages generate the left TOC from `h1/h2/h3`; home always forces light mode, while post theme preference persists in `localStorage`.
+- Daily background is `/images/bing-daily.jpg`; the GitHub Action overwrites and force-adds it, with an in-page gradient fallback.
 
-## Security
+## Stats Worker
 
-- **CSP**: `Content-Security-Policy` meta tag with `base-uri 'self'`, `form-action 'self'`, `object-src 'none'`
-- **XSS Prevention**: `DOMPurify.sanitize()` on all HTML output (`renderHome()`, `loadPost()`)
-- **SRI**: All CDN scripts use `integrity` + `crossorigin="anonymous"`
-- **Hash Validation**: `handleHashChange()` validates hash against `/^post-\d{1,4}$/` before routing
-- **No `unsafe-inline`**: CSP allows inline scripts/styles only because all JS/CSS is inlined in a single file; external scripts are SRI-verified
+- `STATS_WORKER_URL` in `index.html` points to `https://blog-stats.washi.lol`.
+- Worker source is `worker/src/index.js`; config is `worker/wrangler.toml`.
+- The Worker exposes `POST /track` and `GET /stats`, stores counts in KV binding `STATS`, and only allows origin `https://washi.lol` via `ALLOWED_ORIGIN`.
 
-## Daily Wallpaper
+## Security Notes
 
-`.github/workflows/bing-wallpaper.yml` runs daily at 8:00 CST (cron: `0 0 * * *` UTC):
-- Fetches Bing API `HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN`
-- Downloads image to `images/bing-daily.jpg` (overwrites)
-- Commits via `git add -f` (file is `.gitignore`d to avoid history bloat)
-- Falls back to CSS gradient if image not yet available
+- Keep CDN scripts SRI-pinned with `integrity` and `crossorigin`.
+- Keep rendered HTML sanitized with `DOMPurify.sanitize()`.
+- CSP intentionally allows inline scripts/styles because this repo is a single static HTML file; preserve `base-uri 'self'`, `form-action 'self'`, and `object-src 'none'`.
+- If adding external fetches or media, update the CSP meta tag in `index.html`.
 
 ## SVG Image Guidelines
 
-When creating SVG illustrations for posts:
-
-- **ViewBox height**: Ensure sufficient height for all elements; prefer 800×300–800×400 range
-- **Text spacing**: Minimum 1.4× font-size between text baselines for Chinese characters (e.g., font-size 11 → 16px gap)
-- **Arc paths**: Ensure arc endpoints lie on the specified radius circle (e.g., `M-75,0 A75,75...` not `M-70,50 A80,80...`)
-- **Sweep direction**: Use `sweep-flag=1` (clockwise) for upper semicircle arcs in SVG's y-down coordinate system
-- **Check alignment**: Verify all annotations/labels align with the elements they reference (e.g., "leak points" between funnel layers, not inside them)
-
-## Deployment
-
-- Static site, GitHub Pages
-- GitHub Actions triggers on push and cron schedule
+- Use enough viewBox height; 800x300 to 800x400 usually fits blog diagrams.
+- Keep Chinese text baselines at least 1.4x font size apart.
+- For arc paths, keep endpoints on the declared radius and use `sweep-flag=1` for upper semicircles in SVG y-down coordinates.
