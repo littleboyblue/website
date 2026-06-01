@@ -2,5 +2,8 @@
 .DS_Store
 AGENTS.md
 
+# Wrangler local cache
+worker/.wrangler/
+
 # Daily wallpaper (overwritten by GitHub Actions)
 images/bing-daily.jpg

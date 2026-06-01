@@ -18,6 +18,8 @@ export default {
     }
 };
 
+const MAX_TRACK_BODY_BYTES = 1024;
+
 function corsHeaders(env) {
     return {
         'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN || '*',
@@ -36,16 +38,60 @@ function jsonRes(data, env, status = 200) {
     });
 }
 
-async function handleTrack(request, env) {
-    const origin = request.headers.get('Origin') || '';
+function isAllowedOrigin(request, env) {
     const allowed = env.ALLOWED_ORIGIN || '';
-    if (allowed && origin !== allowed) {
+    if (!allowed) return true;
+    return request.headers.get('Origin') === allowed;
+}
+
+async function listAllKeys(env, prefix) {
+    const keys = [];
+    let cursor;
+
+    do {
+        const options = { prefix };
+        if (cursor) options.cursor = cursor;
+
+        const page = await env.STATS.list(options);
+        keys.push(...page.keys);
+        cursor = page.list_complete ? null : page.cursor;
+    } while (cursor);
+
+    return keys;
+}
+
+async function readCounts(env, prefix) {
+    const keys = await listAllKeys(env, prefix);
+    const counts = {};
+
+    await Promise.all(
+        keys.map(async (k) => {
+            const name = k.name.slice(prefix.length);
+            const val = await env.STATS.get(k.name);
+            counts[name] = parseInt(val, 10) || 0;
+        })
+    );
+
+    return counts;
+}
+
+async function handleTrack(request, env) {
+    if (!isAllowedOrigin(request, env)) {
         return jsonRes({ error: 'Forbidden' }, env, 403);
+    }
+
+    const contentLength = Number(request.headers.get('Content-Length') || 0);
+    if (contentLength > MAX_TRACK_BODY_BYTES) {
+        return jsonRes({ error: 'Payload too large' }, env, 413);
     }
 
     let body;
     try {
-        body = await request.json();
+        const raw = await request.text();
+        if (raw.length > MAX_TRACK_BODY_BYTES) {
+            return jsonRes({ error: 'Payload too large' }, env, 413);
+        }
+        body = JSON.parse(raw);
     } catch {
         return jsonRes({ error: 'Invalid JSON' }, env, 400);
     }
@@ -61,53 +107,32 @@ async function handleTrack(request, env) {
     }
 
     const today = new Date().toISOString().slice(0, 10);
-
-    const pvKey = `pv:${sanitized}`;
-    const dailyKey = `daily:${today}`;
-    const totalKey = 'meta:total';
-
-    const [pvVal, dailyVal, totalVal] = await Promise.all([
-        env.STATS.get(pvKey),
-        env.STATS.get(dailyKey),
-        env.STATS.get(totalKey),
-    ]);
-
-    const pvCount = (parseInt(pvVal, 10) || 0) + 1;
-    const dailyCount = (parseInt(dailyVal, 10) || 0) + 1;
-    const totalCount = (parseInt(totalVal, 10) || 0) + 1;
-
-    await Promise.all([
-        env.STATS.put(pvKey, String(pvCount)),
-        env.STATS.put(dailyKey, String(dailyCount)),
-        env.STATS.put(totalKey, String(totalCount)),
-    ]);
+    const hitKey = `hit:${today}:${sanitized}:${Date.now()}:${crypto.randomUUID()}`;
+    await env.STATS.put(hitKey, '1');
 
     return jsonRes({ ok: true }, env);
 }
 
 async function handleStats(request, env) {
-    const totalVal = await env.STATS.get('meta:total');
-    const total = parseInt(totalVal, 10) || 0;
+    if (!isAllowedOrigin(request, env)) {
+        return jsonRes({ error: 'Forbidden' }, env, 403);
+    }
 
-    const pvList = await env.STATS.list({ prefix: 'pv:' });
-    const posts = {};
-    await Promise.all(
-        pvList.keys.map(async (k) => {
-            const page = k.name.slice(3);
-            const val = await env.STATS.get(k.name);
-            posts[page] = parseInt(val, 10) || 0;
-        })
-    );
+    const [totalVal, posts, daily, hitKeys] = await Promise.all([
+        env.STATS.get('meta:total'),
+        readCounts(env, 'pv:'),
+        readCounts(env, 'daily:'),
+        listAllKeys(env, 'hit:'),
+    ]);
 
-    const dailyList = await env.STATS.list({ prefix: 'daily:' });
-    const daily = {};
-    await Promise.all(
-        dailyList.keys.map(async (k) => {
-            const date = k.name.slice(6);
-            const val = await env.STATS.get(k.name);
-            daily[date] = parseInt(val, 10) || 0;
-        })
-    );
+    hitKeys.forEach((k) => {
+        const [, date, page] = k.name.split(':');
+        if (!date || !page) return;
+        posts[page] = (posts[page] || 0) + 1;
+        daily[date] = (daily[date] || 0) + 1;
+    });
+
+    const total = (parseInt(totalVal, 10) || 0) + hitKeys.length;
 
     return jsonRes({ total, posts, daily }, env);
 }

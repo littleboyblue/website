@@ -1529,6 +1529,7 @@
         const bgWallpaper = document.getElementById('bg-wallpaper');
 
         let currentPost = null;
+        let postLoadToken = 0;
         let isDarkMode = localStorage.getItem('dark-mode') === 'true';
 
         function loadWallpaper() {
@@ -1832,7 +1833,11 @@
 
         function loadPost(postId) {
             const post = blogConfig.posts.find((p) => p.id === postId);
-            if (!post) return;
+            if (!post) {
+                postLoadToken++;
+                return;
+            }
+            const loadToken = ++postLoadToken;
 
             topBar.style.display = 'flex';
             postLayout.style.display = 'flex';
@@ -1846,6 +1851,8 @@
             fetch(post.file)
                 .then((response) => response.text())
                 .then((content) => {
+                    if (loadToken !== postLoadToken || window.location.hash !== `#${postId}`) return;
+
                     const html = marked.parse(content);
                     const result = extractToc(html);
 
@@ -1861,12 +1868,13 @@
                     setupScrollSpy();
 
                     currentPost = postId;
-                    window.location.hash = `#${postId}`;
 
                     applyTheme();
                     trackPageView(postId);
                 })
                 .catch((error) => {
+                    if (loadToken !== postLoadToken || window.location.hash !== `#${postId}`) return;
+
                     const p = document.createElement('p');
                     p.textContent = `Error loading post: ${error.message}`;
                     app.innerHTML = '';
@@ -1876,6 +1884,10 @@
 
         function handleHashChange() {
             const hash = window.location.hash.slice(1);
+            if (!/^post-\d{1,4}$/.test(hash)) {
+                postLoadToken++;
+            }
+
             if (hash && /^post-\d{1,4}$/.test(hash)) {
                 loadPost(hash);
             } else if (hash === 'categories') {
@@ -1903,20 +1915,18 @@
             const link = e.target.closest('.post-link');
             if (link) {
                 e.preventDefault();
-                loadPost(link.dataset.postId);
+                window.location.hash = `#${link.dataset.postId}`;
                 return;
             }
             const catLink = e.target.closest('.category-link');
             if (catLink) {
                 e.preventDefault();
-                renderCategoryPage(catLink.dataset.category);
                 window.location.hash = `#category/${encodeURIComponent(catLink.dataset.category)}`;
                 return;
             }
             const backLink = e.target.closest('.archive-back');
             if (backLink) {
                 e.preventDefault();
-                renderCategories();
                 window.location.hash = '#categories';
             }
         });
