@@ -1841,6 +1841,7 @@
             document.getElementById('header').style.display = 'none';
             document.getElementById('main').style.display = 'none';
             document.getElementById('footer').style.display = 'none';
+            contentArea.scrollTop = 0;
 
             fetch(post.file)
                 .then((response) => response.text())
@@ -1854,6 +1855,7 @@
                         </div>
                     `);
                     app.innerHTML = safeHtml;
+                    contentArea.scrollTop = 0;
 
                     renderToc(result.toc);
                     setupScrollSpy();
