@@ -656,6 +656,20 @@
             white-space: nowrap;
         }
 
+        .stats-tooltip {
+            position: fixed;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.82);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            white-space: nowrap;
+            z-index: 1000;
+            transform: translate(-50%, -130%);
+            display: none;
+        }
+
         .stats-error {
             color: #999;
             font-size: 0.95em;
@@ -1906,7 +1920,7 @@
                         const label = date.slice(5);
                         chartHtml += `
                             <div class="stats-bar-col">
-                                <div class="stats-bar" style="height:${height}px" title="${date}: ${count} PV"></div>
+                                <div class="stats-bar" style="height:${height}px" data-date="${date}" data-count="${count}"></div>
                                 <span class="stats-bar-label">${label}</span>
                             </div>
                         `;
@@ -1922,6 +1936,27 @@
                             <div class="stats-chart">${chartHtml}</div>
                         </section>
                     `);
+
+                    let tooltip = document.getElementById('stats-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('div');
+                        tooltip.id = 'stats-tooltip';
+                        tooltip.className = 'stats-tooltip';
+                        document.body.appendChild(tooltip);
+                    }
+                    homeApp.querySelectorAll('.stats-bar').forEach((bar) => {
+                        bar.addEventListener('mouseenter', () => {
+                            tooltip.textContent = `${bar.dataset.date}  PV: ${bar.dataset.count}`;
+                            tooltip.style.display = 'block';
+                        });
+                        bar.addEventListener('mousemove', (e) => {
+                            tooltip.style.left = e.clientX + 'px';
+                            tooltip.style.top = e.clientY + 'px';
+                        });
+                        bar.addEventListener('mouseleave', () => {
+                            tooltip.style.display = 'none';
+                        });
+                    });
                 })
                 .catch(() => {
                     homeApp.innerHTML = DOMPurify.sanitize(`
